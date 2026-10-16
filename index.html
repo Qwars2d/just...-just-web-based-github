@@ -17,7 +17,8 @@
     .audio-panel{margin-bottom:10px}.audio-row{display:grid;grid-template-columns:150px minmax(120px,1fr) auto;align-items:center;gap:9px;padding:7px 10px;border-bottom:1px solid #252c39}.audio-row:last-child{border-bottom:0}.track-label{font-weight:600}.track-label small{display:block;color:var(--muted);font-weight:400}.wave-wrap{height:42px;background:#111720;border-radius:4px;overflow:hidden;position:relative}.wave-wrap canvas{width:100%;height:100%;display:block}.track-actions{display:flex;gap:5px}.track-actions button{padding:5px 7px;font-size:12px}
     .event-item{display:grid;grid-template-columns:minmax(65px,1fr) minmax(75px,1fr) auto;gap:6px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line);font-size:12px}.event-item select{min-width:0;width:100%}.editor-panel{position:relative}.editor-scroll{height:min(68vh,760px);min-height:420px;overflow:hidden;position:relative;background:#111720}.editor-scroll canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}.editor-footer{padding:7px 10px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
     aside{display:grid;gap:10px}.side-body{padding:10px}.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.tool-grid button.active{border-color:var(--cyan);background:#15303a;color:#baf6ff}.side-body p{color:var(--muted);font-size:12px;margin:9px 0 0}.control-form{display:grid;grid-template-columns:1fr 1fr;gap:7px;align-items:center}.control-form button{grid-column:1/-1}.control-list{max-height:180px;overflow:auto;margin-top:8px}.control-item{display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line);font-size:12px}.control-item button{padding:3px 7px}.control-item input{width:76px}.empty{color:var(--muted);font-size:12px;padding:8px 0}
-    .playtest-panel{margin-top:10px}.playtest-stats{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:12px}.playtest-stats strong{color:var(--text);font-variant-numeric:tabular-nums}.character-selects{display:flex;gap:12px;flex-wrap:wrap;padding:8px 12px;background:#141923;border-bottom:1px solid var(--line)}.character-selects label{display:flex;gap:7px;align-items:center;font-size:12px}.character-selects select{max-width:180px}.character-load-status{margin-left:auto;color:var(--muted);font-size:12px;align-self:center}.health-hud{padding:12px 18px 8px;background:#141923}.health-bar{height:24px;display:flex;position:relative;border:2px solid #080a0e;border-radius:7px;background:#080a0e;box-shadow:0 1px 0 #465267;--health:50%}.health-opponent,.health-player{height:100%;display:flex;align-items:center;overflow:hidden;font-size:10px;font-weight:800;letter-spacing:.07em;transition:width .16s}.health-opponent{width:calc(100% - var(--health));justify-content:flex-start;padding-left:9px;background:linear-gradient(90deg,#cf338e,#ff62cc);color:#271326}.health-player{width:var(--health);justify-content:flex-end;padding-right:9px;background:linear-gradient(90deg,#42d7e9,#62baff);color:#10202c}.health-marker{position:absolute;left:calc(100% - var(--health));top:-5px;width:12px;height:30px;transform:translateX(-50%);border:2px solid #07090d;border-radius:5px;background:#f3f1e9;box-shadow:0 0 0 1px #fff;transition:left .16s;pointer-events:none}.accuracy-row{display:flex;justify-content:center;gap:6px;margin-top:7px;color:var(--muted);font-size:12px}.accuracy-row strong{color:#f4f6fb;font-variant-numeric:tabular-nums}.playtest-stage{display:grid;grid-template-columns:minmax(100px,22%) minmax(0,1fr) minmax(100px,22%);gap:8px;padding:8px;background:#111720}.playtest-canvas-wrap,.character-wrap{height:310px;min-width:0;background:#111720;border:1px solid #252c39;border-radius:6px;overflow:hidden}.playtest-canvas-wrap canvas,.character-wrap canvas{display:block;width:100%;height:100%}.character-wrap{position:relative;background:radial-gradient(ellipse at 50% 70%,#293746 0,#171e29 65%,#111720 100%)}.character-wrap canvas{position:absolute;inset:0}.character-caption{position:absolute;top:7px;left:0;right:0;text-align:center;color:#99a7bb;font-size:11px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}.playtest-footer{padding:8px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.key-bindings{display:grid;grid-template-columns:1fr 1fr;gap:7px}.key-bind{display:flex;justify-content:space-between;align-items:center;gap:5px}.key-bind button{padding:5px 8px;min-width:76px}.key-bind button.listening{border-color:var(--cyan);color:#baf6ff}.playtest-result{min-width:100px;color:var(--cyan);font-weight:650}.playtest-result.miss{color:var(--pink)}.key-hint{color:var(--muted);font-size:12px;margin-top:9px}
+    .playtest-panel{margin-top:10px}.playtest-stats{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:12px}.playtest-stats strong{color:var(--text);font-variant-numeric:tabular-nums}.character-selects{display:flex;gap:12px;flex-wrap:wrap;padding:8px 12px;background:#141923;border-bottom:1px solid var(--line)}.character-selects label{display:flex;gap:7px;align-items:center;font-size:12px}.character-selects select{max-width:180px}.character-load-status{margin-left:auto;color:var(--muted);font-size:12px;align-self:center}.health-hud{padding:12px 18px 8px;background:#141923}.health-bar{height:24px;display:flex;position:relative;border:2px solid #080a0e;border-radius:7px;background:#080a0e;box-shadow:0 1px 0 #465267;--health:50%}.health-opponent,.health-player{height:100%;display:flex;align-items:center;overflow:hidden;font-size:10px;font-weight:800;letter-spacing:.07em;transition:width .16s}.health-opponent{width:calc(100% - var(--health));justify-content:flex-start;padding-left:9px;background:linear-gradient(90deg,#cf338e,#ff62cc);color:#271326}.health-player{width:var(--health);justify-content:flex-end;padding-right:9px;background:linear-gradient(90deg,#42d7e9,#62baff);color:#10202c}.health-marker{position:absolute;left:calc(100% - var(--health));top:-5px;width:12px;height:30px;transform:translateX(-50%);border:2px solid #07090d;border-radius:5px;background:#f3f1e9;box-shadow:0 0 0 1px #fff;transition:left .16s;pointer-events:none}.accuracy-row{display:flex;justify-content:center;gap:6px;margin-top:7px;color:var(--muted);font-size:12px}.accuracy-row strong{color:#f4f6fb;font-variant-numeric:tabular-nums}.playtest-stage{display:grid;grid-template-columns:minmax(100px,22%) minmax(0,1fr) minmax(100px,22%);gap:8px;padding:8px;background:#111720}.playtest-canvas-wrap,.character-wrap{height:310px;min-width:0;background:#111720;border:1px solid #252c39;border-radius:6px;overflow:hidden}.playtest-canvas-wrap canvas,.character-wrap canvas{display:block;width:100%;height:100%}.character-wrap{position:relative;background:radial-gradient(ellipse at 50% 70%,#293746 0,#171e29 65%,#111720 100%)}.character-wrap canvas{position:absolute;inset:0}.character-caption{position:absolute;top:7px;left:0;right:0;text-align:center;color:#99a7bb;font-size:11px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}.playtest-footer{padding:8px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.playtest-footer button[aria-pressed=true]{border-color:var(--cyan);background:#15303a;color:#baf6ff}.key-bindings{display:grid;grid-template-columns:1fr 1fr;gap:7px}.key-bind{display:flex;justify-content:space-between;align-items:center;gap:5px}.key-bind button{padding:5px 8px;min-width:76px}.key-bind button.listening{border-color:var(--cyan);color:#baf6ff}.playtest-result{min-width:100px;color:var(--cyan);font-weight:650}.playtest-result.miss{color:var(--pink)}.key-hint{color:var(--muted);font-size:12px;margin-top:9px}
+    .song-select-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px}.song-select-row label{font-size:13px}.song-select-status{margin-left:auto;color:var(--muted);font-size:12px}
     .help{color:var(--muted);font-size:12px;padding:10px;line-height:1.65}.help kbd{background:var(--raised);border:1px solid var(--line);border-radius:3px;padding:1px 4px;color:var(--text)}
     .accent{color:var(--cyan)}.pink{color:var(--pink)}.muted{color:var(--muted)}#chartInput{display:none}
     @media(max-width:900px){main{grid-template-columns:1fr}aside{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}.editor-scroll{height:60vh}}
@@ -50,6 +51,17 @@
   </div>
   <main>
     <section class="workspace">
+      <div class="panel">
+        <div class="panel-title">Song select</div>
+        <div class="song-select-row">
+          <label for="songSelect">Song</label>
+          <select id="songSelect" aria-label="Select song"><option value="">Select a song</option><option value="monochrome">Monochrome</option><option value="improbable-outset">Improbable Outset</option><option value="madness">Madness</option><option value="expurgation">Expurgation</option></select>
+          <label for="songDifficultySelect">Difficulty</label>
+          <select id="songDifficultySelect" aria-label="Select song difficulty"><option value="hard">Hard</option></select>
+          <span class="song-select-status" id="songSelectStatus" role="status">Choose a song to load its Hard chart.</span>
+          <input id="songFolderInput" type="file" accept=".json,.ogg,.mp3,application/json,audio/ogg,audio/mpeg" webkitdirectory directory multiple hidden>
+        </div>
+      </div>
       <div class="panel audio-panel">
         <div class="panel-title">Audio &amp; waveforms <span class="muted" style="font-size:12px;font-weight:400">Import tracks to align vocals and instrumental</span></div>
         <div id="audioRows"></div>
@@ -80,7 +92,7 @@
           <div class="playtest-canvas-wrap"><canvas id="playtestCanvas" aria-label="Four-lane chart playtest"></canvas></div>
           <div class="character-wrap"><canvas id="characterCanvas" aria-label="Player character animations"></canvas><div class="character-caption" id="playerCharacterCaption">Player</div></div>
         </div>
-        <div class="playtest-footer"><button id="startPlaytestBtn">▶ Start playtest</button><button id="stopPlaytestBtn" disabled>■ Stop</button><span class="playtest-result" id="playtestResult">Ready</span><span class="muted">Opponent notes auto-play and stay hidden here.</span></div>
+        <div class="playtest-footer"><button id="startPlaytestBtn">▶ Start playtest</button><button id="botplayBtn" type="button" aria-pressed="false" title="Automatically hit player notes with perfect timing">🤖 Botplay: Off</button><button id="stopPlaytestBtn" disabled>■ Stop</button><span class="playtest-result" id="playtestResult">Ready</span><span class="muted">Opponent notes auto-play and stay hidden here.</span></div>
       </div>
     </section>
     <aside>
@@ -146,12 +158,20 @@
       {id:"player",name:"Player vocals",sub:"Separate player vocal track",color:"#ff6e9d"}
     ];
     const missSounds=Array.from({length:3},(_,index)=>{const audio=new Audio(new URL(`sounds/missnote${index+1}.mp3`,document.baseURI));audio.preload="auto";audio.volume=.7;return audio;});
+    const playtestSprites=new Map();
+    for(const name of ["sick","good","bad","shit",..."0123456789"]){
+      const image=new Image(),file=`images/UI/${/^\d$/.test(name)?`num${name}`:name}.png`;
+      image.src=new URL(file,document.baseURI).href;
+      image.onload=drawPlaytest;
+      image.onerror=()=>{console.error(`Could not load playtest sprite ${file}`);setStatus(`Could not load playtest sprite ${file}`);};
+      playtestSprites.set(name,image);
+    }
     const tracks = Object.fromEntries(trackDefs.map(t => [t.id,{audio:null,buffer:null,envelope:null,url:null,name:"",duration:0}]));
     let notes=[],controls=[],events=[],selected=new Set(),tool="draw",playhead=0,viewStart=0,playing=false,raf=0,clipboard=[],gesture=null,history=[],future=[],audioContext=null,bindingLane=null;
     const pxPerSecond=100, laneNames=["←","↓","↑","→","←","↓","↑","→"];
     const rowHeight=38, topPad=26, snapDiv=() => Number($("snapSelect").value);
     const defaultKeys=["ArrowLeft","ArrowDown","ArrowUp","ArrowRight"];
-    const game={active:false,restartAt:0,health:100,score:0,combo:0,hits:0,misses:0,accuracyPoints:0,totalNotes:0,totalAccuracyPoints:0,judged:new Set(),opponentJudged:new Set(),held:new Set(),sustainHolds:new Map(),result:"Ready",resultIsMiss:false};
+    const game={active:false,restartAt:0,botplay:false,health:100,score:0,combo:0,hits:0,misses:0,accuracyPoints:0,totalNotes:0,totalAccuracyPoints:0,judged:new Set(),opponentJudged:new Set(),held:new Set(),sustainHolds:new Map(),feedback:null,result:"Ready",resultIsMiss:false};
     const characterAssets=[
       {id:"boyfriend",label:"Boyfriend",atlas:"BOYFRIEND.xml",image:"BOYFRIEND.png"},
       {id:"bfAndGF",label:"Boyfriend & Girlfriend",atlas:"bfAndGF.xml",image:"bfAndGF.png"},
@@ -160,11 +180,18 @@
       {id:"senpai",label:"Senpai",atlas:"senpai.xml",image:"senpai.png"},
       {id:"spirit",label:"Spirit",atlas:"spirit.txt",image:"spirit.png"},
       {id:"SpookyKids",label:"Skid & Pump",atlas:"SpookyKids.xml",image:"SpookyKids.png"},
+      {id:"lostSilverGold",label:"Lost Silver Assets Gold",atlas:"Lost Silver Assets Gold.xml",image:"Lost Silver Assets Gold.png"},
+      {id:"extricky",label:"extricky",atlas:"EXTRICKY.xml",image:"EXTRICKY.png"},
+      {id:"tricky",label:"tricky",atlas:"tricky.xml",image:"tricky.png"},
+      {id:"trickyMask",label:"TrickyMask",atlas:"TrickyMask.xml",image:"TrickyMask.png"},
+      {id:"goldNoMore",label:"GOLD_NO_MORE",atlas:"GOLD_NO_MORE.xml",image:"GOLD_NO_MORE.png"},
+      {id:"goldHeadRippingOff",label:"GOLD_HEAD_RIPPING_OFF",atlas:"GOLD_HEAD_RIPPING_OFF.xml",image:"GOLD_HEAD_RIPPING_OFF.png"},
+      {id:"goldHead",label:"GoldHead Sheet",atlas:"GoldHead Sheet.xml",image:"GoldHead Sheet.png"},
       {id:"qwars",label:"Qwars",atlas:"qwars.xml",image:"qwars.png",fitTrimmedFrames:true}
     ];
     const characters=new Map();
     const importedCharacterUrls=new Map();
-    let selectedPlayerCharacter="boyfriend",selectedOpponentCharacter="senpai",basePlayerCharacter="boyfriend",baseOpponentCharacter="senpai",characterLoadErrors=[],characterAnimationFrame=0,playerCharacterMotion={name:"",startedAt:performance.now(),loop:true},opponentCharacterMotion={name:"",startedAt:performance.now(),loop:true};
+    let selectedPlayerCharacter=null,selectedOpponentCharacter="lostSilverGold",basePlayerCharacter=null,baseOpponentCharacter="lostSilverGold",characterLoadErrors=[],characterAnimationFrame=0,playerCharacterMotion={name:"",startedAt:performance.now(),loop:true},opponentCharacterMotion={name:"",startedAt:performance.now(),loop:true};
     const playedCharacterEvents=new Set();
     function loadPlaytestKeys(){try{const stored=JSON.parse(localStorage.getItem("miniFnfPlaytestKeys"));return Array.isArray(stored)&&stored.length===4&&stored.every(key=>typeof key==="string")?stored:defaultKeys.slice();}catch(error){console.error("Could not load playtest key bindings",error);return defaultKeys.slice();}}
     let playtestKeys=loadPlaytestKeys();
@@ -247,7 +274,7 @@
       try{
         image.src=imageUrl;await image.decode();
         for(const frames of animations.values())for(const frame of frames)if(frame.x<0||frame.y<0||frame.width<=0||frame.height<=0||frame.x+frame.width>image.naturalWidth||frame.y+frame.height>image.naturalHeight)throw new Error(`${atlasFile.name} has frames outside ${imageFile.name}`);
-        const fitTrimmedFrames=[...animations.values()].flat().some(frame=>frame.frameWidth>frame.width*2||frame.frameHeight>frame.height*2),baseName=imageFile.name.replace(/\.png$/i,""),slug=baseName.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"character",id=`imported-${slug}`,label=baseName.replace(/(^|[\s_-])([a-z])/g,(_,separator,letter)=>separator+letter.toUpperCase()),asset={id,label,atlas:atlasFile.name,image:imageFile.name,fitTrimmedFrames};
+        const fitTrimmedFrames=[...animations.values()].flat().some(frame=>frame.frameWidth>frame.width*2||frame.frameHeight>frame.height*2),baseName=imageFile.name.replace(/\.png$/i,""),slug=baseName.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"character",preset=characterAssets.find(item=>item.image.toLowerCase()===imageFile.name.toLowerCase()),id=preset?.id||`imported-${slug}`,label=preset?.label||baseName.replace(/(^|[\s_-])([a-z])/g,(_,separator,letter)=>separator+letter.toUpperCase()),asset={...preset,id,label,atlas:atlasFile.name,image:imageFile.name,fitTrimmedFrames:preset?.fitTrimmedFrames||fitTrimmedFrames};
         const oldUrl=importedCharacterUrls.get(id);if(oldUrl)URL.revokeObjectURL(oldUrl);
         importedCharacterUrls.set(id,imageUrl);
         if(!characterAssets.some(item=>item.id===id))characterAssets.push(asset);
@@ -417,25 +444,50 @@
     }
     function drawCharacters(){drawCharacter(characterCanvas,characterCtx,playerCharacterMotion,"player");drawCharacter(opponentCanvas,opponentCtx,opponentCharacterMotion,"opponent");}
     function updatePlaytestTotals(){const playerNotes=notes.filter(note=>note.lane>=4);game.totalNotes=playerNotes.length;game.totalAccuracyPoints=playerNotes.reduce((total,note)=>total+350+Math.floor(Math.max(0,note.length||0)*4+1e-9)*10,0);}
-    function updatePlaytestStats(){ $("playtestScore").textContent=game.score.toLocaleString();$("playtestCombo").textContent=game.combo;$("playtestHits").textContent=game.hits;$("playtestMisses").textContent=game.misses;$("playtestResult").textContent=game.result;$("playtestResult").classList.toggle("miss",game.resultIsMiss);$("startPlaytestBtn").disabled=game.active||Boolean(game.restartAt);$("stopPlaytestBtn").disabled=!game.active&&!game.restartAt;const health=Math.max(0,Math.min(100,game.health)),accuracy=game.totalAccuracyPoints?game.accuracyPoints/game.totalAccuracyPoints*100:100;$("healthBar").style.setProperty("--health",`${health}%`);$("healthBar").setAttribute("aria-valuenow",health.toFixed(1));$("healthBar").setAttribute("aria-valuetext",`${health.toFixed(1)}% health`);$("playtestAccuracy").textContent=`${Math.max(0,Math.min(100,accuracy)).toFixed(2)}%`;}
+    function updatePlaytestStats(){ $("playtestScore").textContent=game.score.toLocaleString();$("playtestCombo").textContent=game.combo;$("playtestHits").textContent=game.hits;$("playtestMisses").textContent=game.misses;$("playtestResult").textContent=game.result;$("playtestResult").classList.toggle("miss",game.resultIsMiss);$("startPlaytestBtn").disabled=game.active||Boolean(game.restartAt);$("botplayBtn").textContent=`🤖 Botplay: ${game.botplay?"On":"Off"}`;$("botplayBtn").setAttribute("aria-pressed",String(game.botplay));$("stopPlaytestBtn").disabled=!game.active&&!game.restartAt;const health=Math.max(0,Math.min(100,game.health)),accuracy=game.totalAccuracyPoints?game.accuracyPoints/game.totalAccuracyPoints*100:100;$("healthBar").style.setProperty("--health",`${health}%`);$("healthBar").setAttribute("aria-valuenow",health.toFixed(1));$("healthBar").setAttribute("aria-valuetext",`${health.toFixed(1)}% health`);$("playtestAccuracy").textContent=`${Math.max(0,Math.min(100,accuracy)).toFixed(2)}%`;}
     function drawPlaytestArrow(arrow,x,y,size,color){const angle={"→":0,"↓":Math.PI/2,"←":Math.PI,"↑":-Math.PI/2}[arrow];playtestCtx.save();playtestCtx.translate(x,y);playtestCtx.rotate(angle);playtestCtx.scale(size,size);playtestCtx.beginPath();playtestCtx.moveTo(-.46,-.17);playtestCtx.quadraticCurveTo(-.5,0,-.46,.17);playtestCtx.quadraticCurveTo(-.44,.21,-.39,.21);playtestCtx.lineTo(-.11,.21);playtestCtx.lineTo(-.24,.34);playtestCtx.quadraticCurveTo(-.29,.39,-.23,.44);playtestCtx.lineTo(-.16,.5);playtestCtx.quadraticCurveTo(-.12,.54,-.07,.5);playtestCtx.lineTo(.4,.12);playtestCtx.quadraticCurveTo(.51,0,.4,-.12);playtestCtx.lineTo(-.07,-.5);playtestCtx.quadraticCurveTo(-.12,-.54,-.16,-.5);playtestCtx.lineTo(-.23,-.44);playtestCtx.quadraticCurveTo(-.29,-.39,-.24,-.34);playtestCtx.lineTo(-.11,-.21);playtestCtx.lineTo(-.39,-.21);playtestCtx.quadraticCurveTo(-.44,-.21,-.46,-.17);playtestCtx.closePath();playtestCtx.lineJoin="round";playtestCtx.lineWidth=.11;playtestCtx.strokeStyle="#050608";playtestCtx.fillStyle=color;playtestCtx.stroke();playtestCtx.fill();playtestCtx.restore();}
+    function drawPlaytestFeedback(w,h){
+      const feedback=game.feedback;
+      if(!feedback)return;
+      const elapsed=performance.now()-feedback.startedAt,duration=900;
+      if(elapsed>=duration){game.feedback=null;return;}
+      const judgement=playtestSprites.get(feedback.judgement);
+      if(!judgement?.complete||!judgement.naturalWidth)return;
+      const progress=elapsed/duration,maxWidth=Math.min(170,w*.58),scale=Math.min(maxWidth/judgement.naturalWidth,64/judgement.naturalHeight),judgementWidth=judgement.naturalWidth*scale,judgementHeight=judgement.naturalHeight*scale;
+      playtestCtx.save();
+      playtestCtx.globalAlpha=1-progress;
+      playtestCtx.drawImage(judgement,(w-judgementWidth)/2,h*.43-judgementHeight/2-progress*12,judgementWidth,judgementHeight);
+      const digits=String(feedback.combo),digitHeight=Math.min(27,w*.15),digitWidths=[...digits].map(digit=>{
+        const sprite=playtestSprites.get(digit);
+        return sprite?.naturalWidth&&sprite.naturalHeight?digitHeight*sprite.naturalWidth/sprite.naturalHeight:0;
+      }),totalWidth=digitWidths.reduce((total,width)=>total+width,0),digitScale=Math.min(1,w*.9/Math.max(totalWidth,1));
+      let x=(w-totalWidth*digitScale)/2;
+      for(const [index,digit] of [...digits].entries()){
+        const sprite=playtestSprites.get(digit),digitWidth=digitWidths[index]*digitScale;
+        if(sprite?.complete&&sprite.naturalWidth&&digitWidth)playtestCtx.drawImage(sprite,x,h*.58-progress*12,digitWidth,digitHeight*digitScale);
+        x+=digitWidth;
+      }
+      playtestCtx.restore();
+    }
     function drawPlaytest(){
       if(!playtestCtx)return;const w=playtestCanvas.clientWidth,h=playtestCanvas.clientHeight;if(!w||!h)return;
       playtestCtx.clearRect(0,0,w,h);playtestCtx.fillStyle="#111720";playtestCtx.fillRect(0,0,w,h);
       const laneW=w/4,targetY=h*.78,pixelsPerSecond=100,noteHeight=14,playerNotes=notes.filter(n=>n.lane>=4),displayedKeys=playtestKeys.map(keyName),currentBeat=beatAtTime(playhead);
       for(let lane=0;lane<4;lane++){playtestCtx.fillStyle=lane%2?"#191e29":"#151b25";playtestCtx.fillRect(lane*laneW,0,laneW,h);playtestCtx.strokeStyle="#30394a";playtestCtx.lineWidth=1;playtestCtx.beginPath();playtestCtx.moveTo(lane*laneW,0);playtestCtx.lineTo(lane*laneW,h);playtestCtx.stroke();}
       playtestCtx.fillStyle="#202a37";playtestCtx.fillRect(0,targetY-16,w,32);
-      for(let lane=0;lane<4;lane++){const centerX=(lane+.5)*laneW;drawPlaytestArrow(laneNames[lane+4],centerX,targetY,38,game.held.has(lane)?"#fff0a8":"#b9c8d0");playtestCtx.fillStyle="#99a7bb";playtestCtx.font="11px system-ui";playtestCtx.textAlign="center";playtestCtx.textBaseline="top";playtestCtx.fillText(displayedKeys[lane],centerX,targetY+25);}
+      for(let lane=0;lane<4;lane++){const centerX=(lane+.5)*laneW,botHolding=game.botplay&&[...game.sustainHolds.values()].some(hold=>hold.lane===lane);drawPlaytestArrow(laneNames[lane+4],centerX,targetY,38,game.held.has(lane)||botHolding?"#fff0a8":"#b9c8d0");playtestCtx.fillStyle="#99a7bb";playtestCtx.font="11px system-ui";playtestCtx.textAlign="center";playtestCtx.textBaseline="top";playtestCtx.fillText(displayedKeys[lane],centerX,targetY+25);}
       for(const note of playerNotes){if(game.judged.has(note.id)&&!game.sustainHolds.has(note.id))continue;const y=targetY-scrollDistanceBetweenBeats(currentBeat,note.beat)*pixelsPerSecond,lane=note.lane-4,centerX=(lane+.5)*laneW,endBeat=note.beat+note.length,tailHeight=Math.max(0,scrollDistanceBetweenBeats(note.beat,endBeat)*pixelsPerSecond),arrowSize=Math.min(42,laneW*.62);if(y+arrowSize<0||y-tailHeight>h)continue;if(tailHeight>0){playtestCtx.fillStyle="#b94b76";playtestCtx.beginPath();playtestCtx.roundRect(centerX-laneW*.11,y-tailHeight,laneW*.22,tailHeight+arrowSize/2,laneW*.11);playtestCtx.fill();}drawPlaytestArrow(laneNames[note.lane],centerX,y,arrowSize,"#b9c8d0");}
       playtestCtx.fillStyle="#d7e2f2";playtestCtx.font="12px system-ui";playtestCtx.textAlign="left";playtestCtx.textBaseline="top";playtestCtx.fillText(game.active?"Hit the notes as they reach the receptors":"Press Start playtest to begin",9,8);
+      drawPlaytestFeedback(w,h);
       updatePlaytestStats();drawCharacters();
     }
-    function judgePlaytestNote(note,offset){game.judged.add(note.id);game.hits++;game.combo++;const absoluteOffset=Math.abs(offset),points=absoluteOffset<=.045?350:absoluteOffset<=.09?200:50;game.score+=points;game.accuracyPoints+=points;game.health=Math.min(100,game.health+5);playCharacterNote(note.lane);const tickCount=Math.floor(Math.max(0,note.length||0)*4+1e-9);if(tickCount){const elapsedTicks=Math.floor(Math.max(0,(beatAtTime(playhead)-note.beat)*4)+1e-9);game.sustainHolds.set(note.id,{note,lane:note.lane-4,nextTick:Math.min(tickCount+1,Math.max(1,elapsedTicks+1)),tickCount});}game.result=absoluteOffset<=.045?"Sick!":absoluteOffset<=.09?"Good":"Okay";game.resultIsMiss=false;}
+    function judgePlaytestNote(note,offset){game.judged.add(note.id);game.hits++;game.combo++;const absoluteOffset=Math.abs(offset),judgement=absoluteOffset<=.045?"sick":absoluteOffset<=.09?"good":absoluteOffset<=.135?"bad":"shit",points=judgement==="sick"?350:judgement==="good"?200:50;game.score+=points;game.accuracyPoints+=points;game.health=Math.min(100,game.health+5);game.feedback={judgement,combo:game.combo,startedAt:performance.now()};playCharacterNote(note.lane);const tickCount=Math.floor(Math.max(0,note.length||0)*4+1e-9);if(tickCount){const elapsedTicks=Math.floor(Math.max(0,(beatAtTime(playhead)-note.beat)*4)+1e-9);game.sustainHolds.set(note.id,{note,lane:note.lane-4,nextTick:Math.min(tickCount+1,Math.max(1,elapsedTicks+1)),tickCount});}game.result=judgement==="sick"?"Sick!":judgement==="shit"?"Shit":judgement[0].toUpperCase()+judgement.slice(1);game.resultIsMiss=false;}
     function updateOpponentHits(){let lastHit=null;for(const note of notes){if(note.lane>=4||game.opponentJudged.has(note.id)||timeAtBeat(note.beat)>playhead)continue;game.opponentJudged.add(note.id);lastHit=note;}if(lastHit)playCharacterNote(lastHit.lane,"opponent");}
-    function updateSustainScores(){for(const[noteId,hold]of game.sustainHolds){while(hold.nextTick<=hold.tickCount&&playhead>=timeAtBeat(hold.note.beat+hold.nextTick/4)){if(game.held.has(hold.lane)){game.score+=10;game.accuracyPoints+=10;game.result="Hold +10";game.resultIsMiss=false;}hold.nextTick++;}if(hold.nextTick>hold.tickCount)game.sustainHolds.delete(noteId);}}
+    function updateSustainScores(){for(const[noteId,hold]of game.sustainHolds){while(hold.nextTick<=hold.tickCount&&playhead>=timeAtBeat(hold.note.beat+hold.nextTick/4)){if(game.botplay||game.held.has(hold.lane)){game.score+=10;game.accuracyPoints+=10;game.result="Hold +10";game.resultIsMiss=false;}hold.nextTick++;}if(hold.nextTick>hold.tickCount)game.sustainHolds.delete(noteId);}}
     function playMissSound(){const sound=missSounds[Math.floor(Math.random()*missSounds.length)];sound.pause();sound.currentTime=0;const playback=sound.play();if(playback)playback.catch(error=>{console.error(`Could not play ${sound.currentSrc||sound.src}`,error);setStatus(`Miss sound failed to play: ${error.message}`);});}
     function failPlaytest(){game.health=0;game.active=false;game.restartAt=performance.now()+5000;game.held.clear();game.sustainHolds.clear();playing=false;$("playBtn").textContent="▶ Play";for(const track of Object.values(tracks))if(track.audio)track.audio.pause();game.result="Restarting in 5";game.resultIsMiss=true;setStatus("Health depleted · playtest restarts in 5 seconds");}
-    function updatePlaytestMisses(){for(const note of notes){if(!game.active)break;if(note.lane<4||game.judged.has(note.id))continue;if(playhead-timeAtBeat(note.beat)>.18){game.judged.add(note.id);game.misses++;game.combo=0;game.health=Math.max(0,game.health-1);game.result="Miss";game.resultIsMiss=true;playCharacterNote(note.lane,"player",true);playMissSound();if(game.health===0)failPlaytest();}}}
+    function updatePlaytestMisses(){for(const note of notes){if(!game.active)break;if(note.lane<4||game.judged.has(note.id))continue;if(playhead-timeAtBeat(note.beat)>.18){game.judged.add(note.id);game.misses++;game.combo=0;game.feedback=null;game.health=Math.max(0,game.health-1);game.result="Miss";game.resultIsMiss=true;playCharacterNote(note.lane,"player",true);playMissSound();if(game.health===0)failPlaytest();}}}
+    function updateBotplay(){if(!game.botplay)return;for(const note of notes){if(note.lane>=4&&!game.judged.has(note.id)&&playhead>=timeAtBeat(note.beat))judgePlaytestNote(note,0);}}
     function handlePlaytestKeyDown(e){
       if(!game.active||!playing)return false;const lane=playtestKeys.indexOf(e.code);if(lane<0)return false;e.preventDefault();if(e.repeat||game.held.has(lane))return true;game.held.add(lane);
       const candidate=notes.filter(note=>note.lane===lane+4&&!game.judged.has(note.id)).map(note=>({note,offset:timeAtBeat(note.beat)-playhead})).sort((a,b)=>Math.abs(a.offset)-Math.abs(b.offset))[0];
@@ -445,10 +497,12 @@
     function keyName(code){return code.replace(/^Arrow/,"").replace(/^Key/,"").replace(/^Digit/,"").replace(/^Numpad/,"Num ");}
     function renderKeyBindings(){const root=$("keyBindings");root.replaceChildren();for(let lane=0;lane<4;lane++){const row=document.createElement("div"),label=document.createElement("span"),button=document.createElement("button");row.className="key-bind";label.textContent=`${laneNames[lane+4]} Lane ${lane+4}`;button.textContent=bindingLane===lane?"Press a key…":keyName(playtestKeys[lane]);button.classList.toggle("listening",bindingLane===lane);button.setAttribute("aria-label",`Set key for player lane ${lane+4}`);button.onclick=()=>{bindingLane=lane;renderKeyBindings();setStatus(`Press a key for player lane ${lane+4} · Escape to cancel`);};row.append(label,button);root.append(row);}}
     function savePlaytestKeys(){try{localStorage.setItem("miniFnfPlaytestKeys",JSON.stringify(playtestKeys));}catch(error){console.error("Could not save playtest key bindings",error);setStatus("Key binding changed for this session, but could not be saved in this browser.");}}
-    function resetPlaytest(){updatePlaytestTotals();game.active=true;game.restartAt=0;game.health=game.totalNotes?50:100;game.score=0;game.combo=0;game.hits=0;game.misses=0;game.accuracyPoints=0;game.judged.clear();game.opponentJudged.clear();game.held.clear();game.sustainHolds.clear();game.result="Ready";game.resultIsMiss=false;playhead=0;viewStart=0;resetCharacterEvents();}
+    function resetPlaytest(){updatePlaytestTotals();game.active=true;game.restartAt=0;game.health=game.totalNotes?50:100;game.score=0;game.combo=0;game.hits=0;game.misses=0;game.accuracyPoints=0;game.feedback=null;game.judged.clear();game.opponentJudged.clear();game.held.clear();game.sustainHolds.clear();game.result="Ready";game.resultIsMiss=false;playhead=0;viewStart=0;resetCharacterEvents();}
     function startPlaytest(){if(playing)pausePlayback();resetPlaytest();draw();togglePlayback();setStatus("Playtest started");}
-    function stopPlaytest(){if(!game.active&&!game.restartAt)return;game.active=false;game.restartAt=0;game.held.clear();game.sustainHolds.clear();pausePlayback();resetCharacterEvents();game.result="Playtest stopped";game.resultIsMiss=false;drawPlaytest();setStatus("Playtest stopped");}
+    function stopPlaytest(){if(!game.active&&!game.restartAt)return;game.active=false;game.restartAt=0;game.held.clear();game.sustainHolds.clear();game.feedback=null;pausePlayback();resetCharacterEvents();game.result="Playtest stopped";game.resultIsMiss=false;drawPlaytest();setStatus("Playtest stopped");}
+    function toggleBotplay(){game.botplay=!game.botplay;if(game.botplay&&!game.active)startPlaytest();else drawPlaytest();setStatus(`Botplay ${game.botplay?"enabled":"disabled"}`);}
     $("startPlaytestBtn").onclick=startPlaytest;$("stopPlaytestBtn").onclick=stopPlaytest;renderKeyBindings();updatePlaytestStats();
+    $("botplayBtn").onclick=toggleBotplay;
     function draw(){
       if(!ctx)return;const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;
       ctx.clearRect(0,0,w,h);ctx.fillStyle="#111720";ctx.fillRect(0,0,w,h);
@@ -530,7 +584,7 @@
     function drawChartWaveform(trackId,firstLane,laneW,h){const track=tracks[trackId];if(!track.envelope)return;const{step,mins,maxs}=track.envelope,center=(firstLane+2)*laneW,extent=laneW*1.7;ctx.save();ctx.strokeStyle=trackDefs.find(t=>t.id===trackId).color;ctx.globalAlpha=.36;ctx.lineWidth=1;ctx.beginPath();for(let y=topPad;y<h;y+=2){const firstTime=viewStart+(y-topPad)/pxPerSecond,lastTime=firstTime+2/pxPerSecond,firstBucket=Math.max(0,Math.floor(firstTime*track.buffer.sampleRate/step)),lastBucket=Math.min(mins.length-1,Math.floor(lastTime*track.buffer.sampleRate/step));if(firstTime>=track.duration||lastBucket<firstBucket)continue;let min=1,max=-1;for(let bucket=firstBucket;bucket<=lastBucket;bucket++){if(mins[bucket]<min)min=mins[bucket];if(maxs[bucket]>max)max=maxs[bucket];}ctx.moveTo(center+min*extent,y);ctx.lineTo(center+max*extent,y);}ctx.stroke();ctx.restore();}
     function drawWave(trackId){const c=document.querySelector(`[data-wave="${trackId}"]`),g=c.getContext("2d"),r=c.getBoundingClientRect(),dpr=window.devicePixelRatio||1;c.width=Math.max(1,Math.round(r.width*dpr));c.height=Math.max(1,Math.round(r.height*dpr));g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,r.width,r.height);g.fillStyle="#111720";g.fillRect(0,0,r.width,r.height);const track=tracks[trackId],color=trackDefs.find(t=>t.id===trackId).color;if(!track.buffer){g.fillStyle="#8290a5";g.font="11px system-ui";g.fillText("No audio loaded",8,r.height/2+4);return;}const data=track.buffer.getChannelData(0),step=Math.max(1,Math.floor(data.length/r.width)),mid=r.height/2;g.strokeStyle=color;g.globalAlpha=.75;g.beginPath();for(let x=0;x<r.width;x++){let min=1,max=-1;for(let j=0;j<step;j++){const val=data[x*step+j]||0;if(val<min)min=val;if(val>max)max=val;}g.moveTo(x,mid+min*mid*.85);g.lineTo(x,mid+max*mid*.85);}g.stroke();g.globalAlpha=1;}
     function renderAudioRows(){const root=$("audioRows");root.replaceChildren();for(const t of trackDefs){const row=document.createElement("div");row.className="audio-row";row.innerHTML=`<div class="track-label" style="color:${t.color}">${t.name}<small>${t.sub}</small></div><div class="wave-wrap"><canvas data-wave="${t.id}"></canvas></div><div class="track-actions"><label class="file-button">Import<input type="file" accept="audio/*" data-audio="${t.id}"></label><button data-clear="${t.id}">Clear</button></div>`;root.append(row);row.querySelector(`[data-audio="${t.id}"]`).addEventListener("change",e=>{if(e.target.files[0])loadAudio(t.id,e.target.files[0]);});row.querySelector(`[data-clear="${t.id}"]`).addEventListener("click",()=>clearAudio(t.id));}for(const t of trackDefs)drawWave(t.id);}
-    async function loadAudio(id,file){setStatus(`Loading ${file.name}…`);try{const context=await ensureAudioContext(),buffer=await context.decodeAudioData(await file.arrayBuffer()),envelope=buildEnvelope(buffer),old=tracks[id];if(old.url)URL.revokeObjectURL(old.url);if(old.audio)old.audio.pause();const audio=new Audio(URL.createObjectURL(file));audio.preload="auto";audio.onended=()=>{if(playing)pausePlayback();};tracks[id]={audio,buffer,envelope,url:audio.src,name:file.name,duration:buffer.duration};renderAudioRows();syncAudio();setStatus(`${file.name} loaded (${fmtTime(buffer.duration)})`);draw();}catch(error){console.error(error);setStatus(`Could not load ${file.name}: ${error.message||"unsupported audio format"}`);}}
+    async function loadAudio(id,file){setStatus(`Loading ${file.name}…`);try{const context=await ensureAudioContext(),buffer=await context.decodeAudioData(await file.arrayBuffer()),envelope=buildEnvelope(buffer),old=tracks[id];if(old.url)URL.revokeObjectURL(old.url);if(old.audio)old.audio.pause();const audio=new Audio(URL.createObjectURL(file));audio.preload="auto";audio.onended=()=>{if(playing)pausePlayback();};tracks[id]={audio,buffer,envelope,url:audio.src,name:file.name,duration:buffer.duration};renderAudioRows();syncAudio();setStatus(`${file.name} loaded (${fmtTime(buffer.duration)})`);draw();return true;}catch(error){console.error(error);setStatus(`Could not load ${file.name}: ${error.message||"unsupported audio format"}`);return false;}}
     function clearAudio(id){const t=tracks[id];if(t.audio)t.audio.pause();if(t.url)URL.revokeObjectURL(t.url);tracks[id]={audio:null,buffer:null,envelope:null,url:null,name:"",duration:0};renderAudioRows();draw();setStatus("Audio track cleared");}
     function syncAudio(){for(const t of Object.values(tracks))if(t.audio){t.audio.playbackRate=Number($("playbackRate").value);if(Math.abs(t.audio.currentTime-playhead)>.15)t.audio.currentTime=Math.min(playhead,t.duration||playhead);}}
     let lastPlaybackFrame=0;
@@ -549,6 +603,7 @@
       updateCharacterEvents();
       if(game.active){
         updateOpponentHits();
+        updateBotplay();
         updatePlaytestMisses();
         if(game.restartAt){draw();raf=requestAnimationFrame(playbackTick);return;}
         updateSustainScores();
@@ -609,15 +664,98 @@
         }
       }
       importedNotes.sort((a,b)=>a.beat-b.beat||a.lane-b.lane);
-      return{bpm:song.bpm,speed:Number(song.speed)>0?song.speed:1,notes:importedNotes,controls:tempoChanges.map(change=>({id:crypto.randomUUID(),type:"bpm",beat:change.beat,value:change.bpm})),events:[]};
+      const importedControls=tempoChanges.map(change=>({id:crypto.randomUUID(),type:"bpm",beat:change.beat,value:change.bpm}));
+      for(const event of Array.isArray(song.events)?song.events:[]){
+        const [milliseconds,changes]=Array.isArray(event.value)?event.value:Array.isArray(event)?event:[];
+        if(!Number.isFinite(milliseconds)||!Array.isArray(changes))continue;
+        for(const change of changes)if(Array.isArray(change)&&change[0]==="Change Scroll Speed"&&Number(change[1])>0)importedControls.push({id:crypto.randomUUID(),type:"speed",beat:beatAtMilliseconds(milliseconds),value:Number(change[1])});
+      }
+      return{bpm:song.bpm,speed:Number(song.speed)>0?song.speed:1,notes:importedNotes,controls:importedControls,events:[]};
     }
+    function applyImportedChart(imported,fileName){
+      if(game.active||game.restartAt)stopPlaytest();else if(playing)pausePlayback();
+      remember();notes=imported.notes;controls=imported.controls;events=imported.events;updatePlaytestTotals();game.health=game.totalNotes?50:100;game.score=0;game.combo=0;game.hits=0;game.misses=0;game.accuracyPoints=0;game.feedback=null;game.held.clear();game.judged.clear();game.opponentJudged.clear();game.sustainHolds.clear();game.result="Ready";game.resultIsMiss=false;$("bpmInput").value=imported.bpm;$("speedInput").value=imported.speed;selected.clear();playhead=0;viewStart=0;renderControls();renderEvents();resetCharacterEvents();draw();setStatus(`${fileName} imported · ${notes.length} notes, ${controls.length} control changes, ${events.length} events`);
+    }
+    const songs={
+      monochrome:{label:"Monochrome-Hard",folder:"monochrome",chart:"monochrome-hard.json",instrumental:"Inst (1).ogg",vocals:"Voices.ogg",opponent:"lostSilverGold",player:null,events:[
+        {beat:401,character:"goldNoMore"},
+        {beat:407.5,character:"goldHeadRippingOff"},
+        {beat:416,character:"goldHead"}
+      ]},
+      "improbable-outset":{label:"Improbable-Outset-Hard",folder:"Improbable-Outset",chart:"improbable-outset-hard.json",instrumental:"Inst.mp3",vocals:"Voices.mp3",opponent:"trickyMask",player:"boyfriend"},
+      madness:{label:"Madness-Hard",folder:"Madness",chart:"madness-hard.json",instrumental:"Inst.mp3",vocals:"Voices.mp3",opponent:"tricky",player:"boyfriend"},
+      expurgation:{label:"Expurgation-Hard",folder:"Expurgation",chart:"expurgation-hard.json",instrumental:"Inst.mp3",vocals:"Voices.mp3",opponent:"extricky",player:"boyfriend"}
+    };
+    async function loadSelectedSong(songId,files){
+      const song=songs[songId];
+      if(!song)throw new Error(`Unknown song selection: ${songId}`);
+      const status=$("songSelectStatus");
+      try{
+        let chartFile;
+        if(files){
+          const findFile=name=>files.find(file=>file.name.toLowerCase()===name.toLowerCase());
+          chartFile=findFile(song.chart);
+          if(!chartFile)throw new Error(`Could not find ${song.chart} in data/${song.folder}.`);
+        }else if(location.protocol==="file:"){
+          status.textContent=`Choose the data/${song.folder} folder to load its chart.`;
+          $("songFolderInput").click();
+          return;
+        }else{
+          const chartUrl=new URL(`data/${encodeURIComponent(song.folder)}/${encodeURIComponent(song.chart)}`,document.baseURI);
+          const response=await fetch(chartUrl);
+          if(!response.ok)throw new Error(`${song.chart} returned HTTP ${response.status}`);
+          chartFile=new File([await response.blob()],song.chart,{type:"application/json"});
+        }
+        const imported=importKadeChart(JSON.parse(await chartFile.text()));
+        imported.events=(song.events||[]).map(event=>({id:crypto.randomUUID(),type:"change-character",beat:event.beat,side:"opponent",character:event.character}));
+        baseOpponentCharacter=selectedOpponentCharacter=song.opponent;
+        basePlayerCharacter=selectedPlayerCharacter=song.player;
+        saveCharacterSelections();renderCharacterSelects();resetCharacterEvents();
+        applyImportedChart(imported,chartFile.name);
+        status.textContent=`${song.label} chart loaded · opponent: ${characterAssets.find(asset=>asset.id===song.opponent)?.label||song.opponent}.${song.events?.length?" Song character changes are applied at their chart beats.":""}`;
+        const loadSongAudio=async(trackId,name)=>{
+          try{
+            let audioFile;
+            if(files)audioFile=files.find(file=>file.name.toLowerCase()===name.toLowerCase());
+            else{
+              const audioUrl=new URL(`data/${encodeURIComponent(song.folder)}/${encodeURIComponent(name)}`,document.baseURI),response=await fetch(audioUrl);
+              if(!response.ok)throw new Error(`${name} returned HTTP ${response.status}`);
+              audioFile=new File([await response.blob()],name);
+            }
+            if(!audioFile)throw new Error(`Could not find ${name} in data/${song.folder}.`);
+            return await loadAudio(trackId,audioFile);
+          }catch(error){
+            console.error(`Could not load ${song.label} audio ${name}`,error);
+            setStatus(`${song.label} chart loaded, but ${name} could not be loaded: ${error.message}`);
+            return false;
+          }
+        };
+        const audioResults=await Promise.all([loadSongAudio("inst",song.instrumental),loadSongAudio("player",song.vocals)]);
+        if(audioResults.every(Boolean))status.textContent+=` · Audio loaded.`;
+        else status.textContent+=` · Chart is ready; check the status bar for audio errors.`;
+        status.textContent+=" Load images/characters if the sprites are not ready.";
+      }catch(error){
+        console.error(`Could not load ${song.label}`,error);
+        status.textContent=`Could not load ${song.label}: ${error.message}`;
+        setStatus(`Song load failed: ${error.message}`);
+      }
+    }
+    $("songSelect").addEventListener("change",()=>{
+      const songId=$("songSelect").value;
+      if(songId)void loadSelectedSong(songId);
+      else $("songSelectStatus").textContent="Choose a song to load its Hard chart.";
+    });
+    $("songFolderInput").addEventListener("change",event=>{
+      const files=[...event.target.files];event.target.value="";
+      if(!files.length){$("songSelect").value="";$("songSelectStatus").textContent="Song selection cancelled.";return;}
+      void loadSelectedSong($("songSelect").value,files);
+    });
     $("chartInput").onchange=async e=>{
       const file=e.target.files[0];if(!file)return;
       try{
         const data=JSON.parse(await file.text());
         const imported=data.format==="mini-fnf-chart"?importMiniChart(data):importKadeChart(data);
-        if(game.active||game.restartAt)stopPlaytest();else if(playing)pausePlayback();
-        remember();notes=imported.notes;controls=imported.controls;events=imported.events;updatePlaytestTotals();game.health=game.totalNotes?50:100;game.score=0;game.combo=0;game.hits=0;game.misses=0;game.accuracyPoints=0;game.held.clear();game.judged.clear();game.opponentJudged.clear();game.sustainHolds.clear();game.result="Ready";game.resultIsMiss=false;$("bpmInput").value=imported.bpm;$("speedInput").value=imported.speed;selected.clear();playhead=0;viewStart=0;renderControls();renderEvents();resetCharacterEvents();draw();setStatus(`${file.name} imported · ${notes.length} notes, ${controls.length} control changes, ${events.length} events`);
+        applyImportedChart(imported,file.name);
       }catch(error){setStatus(`Chart import failed: ${error.message}`);}
       finally{e.target.value="";}
     };
