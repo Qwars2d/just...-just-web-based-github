@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>fnf but poorly made in html</title>
+  <style>
+    :root{color-scheme:dark;--bg:#10131a;--panel:#191e28;--raised:#222a37;--line:#30394a;--text:#eaf0fa;--muted:#99a7bb;--cyan:#55d7ee;--pink:#ff6e9d;--green:#80e1a0}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.4 system-ui,Segoe UI,sans-serif}
+    button,input,select{font:inherit;color:inherit}button,.file-button{border:1px solid var(--line);background:var(--raised);border-radius:6px;padding:7px 10px;cursor:pointer}button:hover,.file-button:hover{border-color:var(--cyan)}button:disabled{opacity:.4;cursor:default}
+    input,select{background:#111720;border:1px solid var(--line);border-radius:5px;padding:6px 8px;min-width:0}input[type=number]{width:82px}input[type=range]{padding:0;accent-color:var(--cyan)}label{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
+    header{position:sticky;top:0;z-index:5;background:#141923;border-bottom:1px solid var(--line);padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    h1{font-size:16px;margin:0 12px 0 0;white-space:nowrap}.brand{color:var(--cyan)}.toolbar{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.separator{height:26px;border-left:1px solid var(--line);margin:0 3px}
+    .file-button{display:inline-flex;align-items:center;gap:6px}.file-button input{display:none}.status{margin-left:auto;color:var(--muted);white-space:nowrap}
+    .transport{display:flex;gap:8px;align-items:center;padding:9px 14px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}.readout{color:var(--cyan);font-variant-numeric:tabular-nums;min-width:88px}.transport .spacer{flex:1}
+    main{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:12px;padding:12px;align-items:start}.workspace{min-width:0}.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden}.panel-title{padding:9px 12px;border-bottom:1px solid var(--line);font-weight:650;display:flex;justify-content:space-between;align-items:center}
+    .audio-panel{margin-bottom:10px}.audio-row{display:grid;grid-template-columns:150px minmax(120px,1fr) auto;align-items:center;gap:9px;padding:7px 10px;border-bottom:1px solid #252c39}.audio-row:last-child{border-bottom:0}.track-label{font-weight:600}.track-label small{display:block;color:var(--muted);font-weight:400}.wave-wrap{height:42px;background:#111720;border-radius:4px;overflow:hidden;position:relative}.wave-wrap canvas{width:100%;height:100%;display:block}.track-actions{display:flex;gap:5px}.track-actions button{padding:5px 7px;font-size:12px}
+    .event-item{display:grid;grid-template-columns:minmax(65px,1fr) minmax(75px,1fr) auto;gap:6px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line);font-size:12px}.event-item select{min-width:0;width:100%}.editor-panel{position:relative}.editor-scroll{height:min(68vh,760px);min-height:420px;overflow:hidden;position:relative;background:#111720}.editor-scroll canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}.editor-footer{padding:7px 10px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+    aside{display:grid;gap:10px}.side-body{padding:10px}.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.tool-grid button.active{border-color:var(--cyan);background:#15303a;color:#baf6ff}.side-body p{color:var(--muted);font-size:12px;margin:9px 0 0}.control-form{display:grid;grid-template-columns:1fr 1fr;gap:7px;align-items:center}.control-form button{grid-column:1/-1}.control-list{max-height:180px;overflow:auto;margin-top:8px}.control-item{display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line);font-size:12px}.control-item button{padding:3px 7px}.control-item input{width:76px}.empty{color:var(--muted);font-size:12px;padding:8px 0}
+    .playtest-panel{margin-top:10px}.playtest-stats{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:12px}.playtest-stats strong{color:var(--text);font-variant-numeric:tabular-nums}.character-selects{display:flex;gap:12px;flex-wrap:wrap;padding:8px 12px;background:#141923;border-bottom:1px solid var(--line)}.character-selects label{display:flex;gap:7px;align-items:center;font-size:12px}.character-selects select{max-width:180px}.character-load-status{margin-left:auto;color:var(--muted);font-size:12px;align-self:center}.health-hud{padding:12px 18px 8px;background:#141923}.health-bar{height:24px;display:flex;position:relative;border:2px solid #080a0e;border-radius:7px;background:#080a0e;box-shadow:0 1px 0 #465267;--health:50%}.health-opponent,.health-player{height:100%;display:flex;align-items:center;overflow:hidden;font-size:10px;font-weight:800;letter-spacing:.07em;transition:width .16s}.health-opponent{width:calc(100% - var(--health));justify-content:flex-start;padding-left:9px;background:linear-gradient(90deg,#cf338e,#ff62cc);color:#271326}.health-player{width:var(--health);justify-content:flex-end;padding-right:9px;background:linear-gradient(90deg,#42d7e9,#62baff);color:#10202c}.health-marker{position:absolute;left:calc(100% - var(--health));top:-5px;width:12px;height:30px;transform:translateX(-50%);border:2px solid #07090d;border-radius:5px;background:#f3f1e9;box-shadow:0 0 0 1px #fff;transition:left .16s;pointer-events:none}.accuracy-row{display:flex;justify-content:center;gap:6px;margin-top:7px;color:var(--muted);font-size:12px}.accuracy-row strong{color:#f4f6fb;font-variant-numeric:tabular-nums}.playtest-stage{display:grid;grid-template-columns:minmax(100px,22%) minmax(0,1fr) minmax(100px,22%);gap:8px;padding:8px;background:#111720}.playtest-canvas-wrap,.character-wrap{height:310px;min-width:0;background:#111720;border:1px solid #252c39;border-radius:6px;overflow:hidden}.playtest-canvas-wrap canvas,.character-wrap canvas{display:block;width:100%;height:100%}.character-wrap{position:relative;background:radial-gradient(ellipse at 50% 70%,#293746 0,#171e29 65%,#111720 100%)}.character-wrap canvas{position:absolute;inset:0}.character-caption{position:absolute;top:7px;left:0;right:0;text-align:center;color:#99a7bb;font-size:11px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}.playtest-footer{padding:8px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.key-bindings{display:grid;grid-template-columns:1fr 1fr;gap:7px}.key-bind{display:flex;justify-content:space-between;align-items:center;gap:5px}.key-bind button{padding:5px 8px;min-width:76px}.key-bind button.listening{border-color:var(--cyan);color:#baf6ff}.playtest-result{min-width:100px;color:var(--cyan);font-weight:650}.playtest-result.miss{color:var(--pink)}.key-hint{color:var(--muted);font-size:12px;margin-top:9px}
+    .help{color:var(--muted);font-size:12px;padding:10px;line-height:1.65}.help kbd{background:var(--raised);border:1px solid var(--line);border-radius:3px;padding:1px 4px;color:var(--text)}
+    .accent{color:var(--cyan)}.pink{color:var(--pink)}.muted{color:var(--muted)}#chartInput{display:none}
+    @media(max-width:900px){main{grid-template-columns:1fr}aside{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}.editor-scroll{height:60vh}}
+    @media(max-width:580px){.audio-row{grid-template-columns:100px minmax(80px,1fr)}.track-actions{grid-column:1/-1;justify-content:flex-end}.status{width:100%;margin-left:0}.playtest-stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.playtest-canvas-wrap{grid-column:1/-1;grid-row:1;height:260px}.character-wrap{height:210px}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1><span class="brand">◆</span> fnf but poorly made in html</h1>
+    <div class="toolbar">
+      <button id="undoBtn" title="Undo (Ctrl+Z)">↶ Undo</button><button id="redoBtn" title="Redo (Ctrl+Y)">↷ Redo</button>
+      <span class="separator"></span>
+      <button id="copyBtn" title="Copy selected notes (Ctrl+C)">Copy</button><button id="pasteBtn" title="Paste notes (Ctrl+V)">Paste</button>
+      <span class="separator"></span>
+      <label class="file-button">Import chart<input id="chartInput" type="file" accept=".json,.txt,application/json,text/plain"></label>
+      <button id="exportBtn">Export chart</button>
+    </div>
+    <div class="status" id="status">Ready · Click a lane to place a note</div>
+  </header>
+  <div class="transport">
+    <button id="playBtn" title="Play / pause (Space)">▶ Play</button><button id="stopBtn" title="Stop">■ Stop</button>
+    <label>Position <span class="readout" id="positionReadout">00:00.000</span></label>
+    <label>Beat <span class="readout" id="beatReadout">1</span></label>
+    <label>Measure <span class="readout" id="measureReadout">1</span></label>
+    <span class="spacer"></span>
+    <label>BPM <input id="bpmInput" type="number" min="1" max="999" value="120"></label>
+    <label>Scroll <input id="speedInput" type="number" min=".1" max="10" step=".1" value="1"></label>
+    <label>Playback <select id="playbackRate"><option>.25</option><option>.5</option><option>.75</option><option selected>1</option><option>1.25</option><option>1.5</option><option>2</option></select>x</label>
+    <label>Snap <select id="snapSelect"><option value="1">1/1 beat</option><option value="2">1/2 beat</option><option value="4" selected>1/4 beat</option><option value="8">1/8 beat</option><option value="16">1/16 beat</option><option value="0">Off</option></select></label>
+  </div>
+  <main>
+    <section class="workspace">
+      <div class="panel audio-panel">
+        <div class="panel-title">Audio &amp; waveforms <span class="muted" style="font-size:12px;font-weight:400">Import tracks to align vocals and instrumental</span></div>
+        <div id="audioRows"></div>
+      </div>
+      <div class="panel editor-panel">
+        <div class="panel-title">Chart timeline <span class="muted" style="font-size:12px;font-weight:400">Opponent · lanes 0–3 &nbsp; | &nbsp; Player · lanes 4–7 · vocals appear behind their side</span></div>
+        <div class="editor-scroll"><canvas id="chartCanvas" aria-label="Eight lane note chart editor"></canvas></div>
+        <div class="editor-footer"><span>Scroll to move through the song · Drag from a note to create a sustain</span><span><span class="accent">Blue:</span> opponent &nbsp; <span class="pink">Pink:</span> player</span></div>
+      </div>
+      <div class="panel playtest-panel">
+        <div class="panel-title">
+          <span>Playtest · Opponent vs Player</span>
+          <span class="playtest-stats"><span>Score <strong id="playtestScore">0</strong></span><span>Combo <strong id="playtestCombo">0</strong></span><span>Hits <strong id="playtestHits">0</strong></span><span>Misses <strong id="playtestMisses">0</strong></span></span>
+        </div>
+        <div class="character-selects">
+          <label>Opponent <select id="opponentCharacterSelect" aria-label="Select opponent character" disabled></select></label>
+          <label>Player <select id="playerCharacterSelect" aria-label="Select player character" disabled></select></label>
+          <label class="file-button" title="Choose matching .png and .xml or .txt atlas files; pairs are matched by filename.">＋ Import character<input id="characterImportInput" type="file" accept=".png,.xml,.txt,image/png,application/xml,text/xml,text/plain" multiple></label>
+          <label class="file-button" title="Choose the images/characters folder to load its matching atlas and image files.">＋ Load character folder<input id="characterFolderInput" type="file" accept=".png,.xml,.txt,image/png,application/xml,text/xml,text/plain" webkitdirectory directory multiple></label>
+          <span class="character-load-status" id="characterLoadStatus" role="status">Loading character sprites…</span>
+        </div>
+        <div class="health-hud">
+          <div class="health-bar" id="healthBar" role="progressbar" aria-label="Player health" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><div class="health-opponent">OPPONENT</div><div class="health-player">PLAYER</div><div class="health-marker"></div></div>
+          <div class="accuracy-row">Accuracy <strong id="playtestAccuracy">0.00%</strong></div>
+        </div>
+        <div class="playtest-stage">
+          <div class="character-wrap"><canvas id="opponentCanvas" aria-label="Opponent character animations"></canvas><div class="character-caption" id="opponentCharacterCaption">Opponent</div></div>
+          <div class="playtest-canvas-wrap"><canvas id="playtestCanvas" aria-label="Four-lane chart playtest"></canvas></div>
+          <div class="character-wrap"><canvas id="characterCanvas" aria-label="Player character animations"></canvas><div class="character-caption" id="playerCharacterCaption">Player</div></div>
+        </div>
+        <div class="playtest-footer"><button id="startPlaytestBtn">▶ Start playtest</button><button id="stopPlaytestBtn" disabled>■ Stop</button><span class="playtest-result" id="playtestResult">Ready</span><span class="muted">Opponent notes auto-play and stay hidden here.</span></div>
+      </div>
+    </section>
+    <aside>
+      <div class="panel">
+        <div class="panel-title">Editing tools</div>
+        <div class="side-body">
+          <div class="tool-grid">
+            <button class="active" data-tool="draw">✚ Draw</button><button data-tool="select">▧ Select</button>
+          </div>
+          <p>Draw: click to place, drag to make a sustain. Right-click a note to delete it. Select: click or drag a box to select multiple notes; drag a note to move it. Drag a sustain tail to resize.</p>
+          <p><kbd>Ctrl</kbd>+<kbd>Z</kbd> undo · <kbd>Ctrl</kbd>+<kbd>Y</kbd> redo · <kbd>Ctrl</kbd>+<kbd>C</kbd>/<kbd>V</kbd> copy/paste · <kbd>Space</kbd> play/pause</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Control changes <span style="font-size:11px;color:var(--muted)">at playhead</span></div>
+        <div class="side-body">
+          <div class="control-form">
+            <label>Type <select id="controlType"><option value="bpm">BPM</option><option value="speed">Scroll speed</option></select></label>
+            <label>Value <input id="controlValue" type="number" min=".1" step=".1" value="120"></label>
+            <button id="addControlBtn">＋ Add at current beat</button>
+          </div>
+          <div id="controlList" class="control-list"></div>
+          <p>BPM changes affect beat timing after their position. Scroll speed changes are saved in the chart for editor/gameplay use.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Event chart <span style="font-size:11px;color:var(--muted)">at playhead</span></div>
+        <div class="side-body">
+          <div class="control-form">
+            <label>Event <select id="eventType"><option value="change-character">Change character</option></select></label>
+            <label>Side <select id="eventSide"><option value="player">Player</option><option value="opponent">Opponent</option></select></label>
+            <label>Character <select id="eventCharacter"></select></label>
+            <button id="addEventBtn">＋ Add event at current beat</button>
+          </div>
+          <div id="eventList" class="control-list"></div>
+          <p>Character events trigger during playback and playtest, and are saved with the chart.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Playtest controls</div>
+        <div class="side-body">
+          <div class="key-bindings" id="keyBindings"></div>
+          <div class="key-hint">Click a key, then press the key you want to bind. Bindings are saved in this browser. Playtest uses player lanes 4–7. Hold through sustain tails to earn 10 points per tick.</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Lane map</div>
+        <div class="help"><span class="accent">OPPONENT</span> &nbsp; 0 ← Left &nbsp; 1 ↓ Down &nbsp; 2 ↑ Up &nbsp; 3 → Right<br><span class="pink">PLAYER</span> &nbsp; 4 ← Left &nbsp; 5 ↓ Down &nbsp; 6 ↑ Up &nbsp; 7 → Right<br><br>Chart files save notes, sustains, tempo, scroll-speed changes and events. Audio files remain local and are not embedded in chart exports.</div>
+      </div>
+    </aside>
+  </main>
+  <script>
+  (() => {
+    "use strict";
+    const $ = id => document.getElementById(id);
+    const canvas = $("chartCanvas"), ctx = canvas.getContext("2d");
+    const playtestCanvas = $("playtestCanvas"), playtestCtx = playtestCanvas.getContext("2d");
+    const characterCanvas=$("characterCanvas"),characterCtx=characterCanvas.getContext("2d");
+    const opponentCanvas=$("opponentCanvas"),opponentCtx=opponentCanvas.getContext("2d");
+    const trackDefs = [
+      {id:"inst",name:"Instrumental",sub:"Song backing track",color:"#55d7ee"},
+      {id:"opponent",name:"Opponent vocals",sub:"Separate opponent vocal track",color:"#80aaff"},
+      {id:"player",name:"Player vocals",sub:"Separate player vocal track",color:"#ff6e9d"}
+    ];
+    const missSounds=Array.from({length:3},(_,index)=>{const audio=new Audio(new URL(`sounds/missnote${index+1}.mp3`,document.baseURI));audio.preload="auto";audio.volume=.7;return audio;});
+    const tracks = Object.fromEntries(trackDefs.map(t => [t.id,{audio:null,buffer:null,envelope:null,url:null,name:"",duration:0}]));
+    let notes=[],controls=[],events=[],selected=new Set(),tool="draw",playhead=0,viewStart=0,playing=false,raf=0,clipboard=[],gesture=null,history=[],future=[],audioContext=null,bindingLane=null;
+    const pxPerSecond=100, laneNames=["←","↓","↑","→","←","↓","↑","→"];
+    const rowHeight=38, topPad=26, snapDiv=() => Number($("snapSelect").value);
+    const defaultKeys=["ArrowLeft","ArrowDown","ArrowUp","ArrowRight"];
+    const game={active:false,restartAt:0,health:100,score:0,combo:0,hits:0,misses:0,accuracyPoints:0,totalNotes:0,totalAccuracyPoints:0,judged:new Set(),opponentJudged:new Set(),held:new Set(),sustainHolds:new Map(),result:"Ready",resultIsMiss:false};
+    const characterAssets=[
+      {id:"boyfriend",label:"Boyfriend",atlas:"BOYFRIEND.xml",image:"BOYFRIEND.png"},
+      {id:"bfAndGF",label:"Boyfriend & Girlfriend",atlas:"bfAndGF.xml",image:"bfAndGF.png"},
+      {id:"bfChristmas",label:"Christmas Boyfriend",atlas:"bfChristmas.xml",image:"bfChristmas.png"},
+      {id:"bfPixel",label:"Pixel Boyfriend",atlas:"bfPixel.xml",image:"bfPixel.png"},
+      {id:"senpai",label:"Senpai",atlas:"senpai.xml",image:"senpai.png"},
+      {id:"spirit",label:"Spirit",atlas:"spirit.txt",image:"spirit.png"},
+      {id:"SpookyKids",label:"Skid & Pump",atlas:"SpookyKids.xml",image:"SpookyKids.png"},
+      {id:"qwars",label:"Qwars",atlas:"qwars.xml",image:"qwars.png",fitTrimmedFrames:true}
+    ];
+    const characters=new Map();
+    const importedCharacterUrls=new Map();
+    let selectedPlayerCharacter="boyfriend",selectedOpponentCharacter="senpai",basePlayerCharacter="boyfriend",baseOpponentCharacter="senpai",characterLoadErrors=[],characterAnimationFrame=0,playerCharacterMotion={name:"",startedAt:performance.now(),loop:true},opponentCharacterMotion={name:"",startedAt:performance.now(),loop:true};
+    const playedCharacterEvents=new Set();
+    function loadPlaytestKeys(){try{const stored=JSON.parse(localStorage.getItem("miniFnfPlaytestKeys"));return Array.isArray(stored)&&stored.length===4&&stored.every(key=>typeof key==="string")?stored:defaultKeys.slice();}catch(error){console.error("Could not load playtest key bindings",error);return defaultKeys.slice();}}
+    let playtestKeys=loadPlaytestKeys();
+    const setStatus = text => $("status").textContent=text;
+    function remember() { history.push(JSON.stringify({notes,controls,events})); if(history.length>100)history.shift(); future=[]; updateHistoryButtons(); }
+    function updateHistoryButtons(){ $("undoBtn").disabled=!history.length; $("redoBtn").disabled=!future.length; }
+    function restoreState(serialized){const state=JSON.parse(serialized);notes=state.notes;controls=state.controls;events=state.events||[];selected.clear();renderControls();renderEvents();resetCharacterEvents();updateCharacterEvents();draw();updateHistoryButtons();}
+    function undo(){if(!history.length)return;future.push(JSON.stringify({notes,controls,events}));restoreState(history.pop());setStatus("Undo");}
+    function redo(){if(!future.length)return;history.push(JSON.stringify({notes,controls,events}));restoreState(future.pop());setStatus("Redo");}
+    function setCanvasSize(){const r=canvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;canvas.width=Math.max(1,Math.round(r.width*dpr));canvas.height=Math.max(1,Math.round(r.height*dpr));ctx.setTransform(dpr,0,0,dpr,0,0);draw();}
+    function beatAtTime(time){let bpm=Number($("bpmInput").value)||120, lastBeat=0,lastTime=0;for(const c of controls.filter(x=>x.type==="bpm").sort((a,b)=>a.beat-b.beat)){const t=lastTime+(c.beat-lastBeat)*60/bpm;if(c.beat>0&&t>time)break;if(c.beat<=0){bpm=c.value;continue;}lastTime=t;lastBeat=c.beat;bpm=c.value;}return lastBeat+Math.max(0,time-lastTime)*bpm/60;}
+    function timeAtBeat(beat){let bpm=Number($("bpmInput").value)||120,lastBeat=0,lastTime=0;for(const c of controls.filter(x=>x.type==="bpm").sort((a,b)=>a.beat-b.beat)){if(c.beat<=0){bpm=c.value;continue;}if(c.beat>=beat)break;lastTime+=(c.beat-lastBeat)*60/bpm;lastBeat=c.beat;bpm=c.value;}return lastTime+(beat-lastBeat)*60/bpm;}
+    function scrollDistanceBetweenBeats(startBeat,endBeat){
+      if(startBeat===endBeat)return 0;
+      const direction=endBeat>startBeat?1:-1,low=Math.min(startBeat,endBeat),high=Math.max(startBeat,endBeat);
+      const boundaries=[low,...controls.filter(c=>c.type==="bpm"||c.type==="speed").map(c=>c.beat).filter(beat=>beat>low&&beat<high),high].sort((a,b)=>a-b);
+      let distance=0;
+      for(let i=0;i<boundaries.length-1;i++){
+        const from=boundaries[i],to=boundaries[i+1],midpoint=(from+to)/2;
+        let bpm=Number($("bpmInput").value)||120,speed=Number($("speedInput").value)||1;
+        for(const control of controls)if(control.beat<=midpoint){if(control.type==="bpm")bpm=control.value;else if(control.type==="speed")speed=control.value;}
+        distance+=(to-from)*60/bpm*speed;
+      }
+      return distance*direction;
+    }
+    function snapBeat(beat){const div=snapDiv();return div?Math.max(0,Math.round(beat*div)/div):Math.max(0,beat);}
+    function beatFromY(y){return snapBeat(beatAtTime(viewStart+(y-topPad)/pxPerSecond));}
+    function yFromBeat(beat){return topPad+(timeAtBeat(beat)-viewStart)*pxPerSecond;}
+    function laneFromX(x){return Math.max(0,Math.min(7,Math.floor((x/(canvas.clientWidth||1))*8)));}
+    function fmtTime(t){const m=Math.floor(t/60),s=(t%60).toFixed(3).padStart(6,"0");return String(m).padStart(2,"0")+":"+s;}
+    function updateReadouts(){const beat=beatAtTime(playhead);$("positionReadout").textContent=fmtTime(playhead);$("beatReadout").textContent=(beat+1).toFixed(2).replace(/\.?0+$/,"");$("measureReadout").textContent=(Math.floor(beat/4)+1).toString();}
+    function currentDuration(){return Math.max(30,...Object.values(tracks).map(t=>t.duration||0),...notes.map(n=>timeAtBeat(n.beat)+(n.length||0)*60/(Number($("bpmInput").value)||120))+5);}
+    function resizePlaytestCanvas(){const r=playtestCanvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;playtestCanvas.width=Math.max(1,Math.round(r.width*dpr));playtestCanvas.height=Math.max(1,Math.round(r.height*dpr));playtestCtx.setTransform(dpr,0,0,dpr,0,0);drawPlaytest();}
+    function resizeCharacterCanvas(targetCanvas,targetContext,motion,side){const r=targetCanvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;targetCanvas.width=Math.max(1,Math.round(r.width*dpr));targetCanvas.height=Math.max(1,Math.round(r.height*dpr));targetContext.setTransform(dpr,0,0,dpr,0,0);drawCharacter(targetCanvas,targetContext,motion,side);}
+    function parseCharacterXml(text){
+      const xml=new DOMParser().parseFromString(text,"application/xml");
+      if(xml.querySelector("parsererror"))throw new Error("XML atlas could not be parsed");
+      const animations=new Map();
+      for(const node of xml.querySelectorAll("SubTexture")){
+        const name=node.getAttribute("name")||"",match=/^(.*?)(\d+)$/.exec(name),animation=match?match[1]:name;
+        const read=(attribute,fallback=0)=>{const raw=node.getAttribute(attribute);if(raw===null||raw==="")return fallback;const value=Number(raw);return Number.isFinite(value)?value:fallback;};
+        if(!animations.has(animation))animations.set(animation,[]);
+        animations.get(animation).push({index:match?Number(match[2]):0,x:read("x"),y:read("y"),width:read("width"),height:read("height"),offsetX:read("frameX"),offsetY:read("frameY"),frameWidth:read("frameWidth",read("width")),frameHeight:read("frameHeight",read("height"))});
+      }
+      for(const frames of animations.values())frames.sort((a,b)=>a.index-b.index);
+      return animations;
+    }
+    function parseCharacterText(text){
+      const animations=new Map();
+      for(const line of text.split(/\r?\n/)){
+        const match=/^\s*(.*?)_(\d+)\s*=\s*(-?\d+)\s+(-?\d+)\s+(\d+)\s+(\d+)\s*$/.exec(line);
+        if(!match)continue;
+        const [,animation,index,x,y,width,height]=match;
+        if(!animations.has(animation))animations.set(animation,[]);
+        animations.get(animation).push({index:Number(index),x:Number(x),y:Number(y),width:Number(width),height:Number(height),offsetX:0,offsetY:0,frameWidth:Number(width),frameHeight:Number(height)});
+      }
+      for(const frames of animations.values())frames.sort((a,b)=>a.index-b.index);
+      if(!animations.size)throw new Error("Text atlas contains no sprite frames");
+      return animations;
+    }
+    function mapCharacterAnimations(animations){
+      const entries=[...animations.entries()],normalized=name=>name.toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+      const idle=entries.filter(([name])=>/\b(idle|dance)\b/.test(normalized(name))).sort((a,b)=>Number(/\bsenpai\b/.test(normalized(b[0]))&&!/\bangry\b/.test(normalized(b[0])))-Number(/\bsenpai\b/.test(normalized(a[0]))&&!/\bangry\b/.test(normalized(a[0]))))[0];
+      const directions=["left","down","up","right"];
+      const findDirection=(direction,miss)=>entries.filter(([name])=>{const value=normalized(name),hasDirection=new RegExp(`\\b${direction}\\b`).test(value);return hasDirection&&(miss?/\bmiss\b/.test(value):!/\bmiss\b/.test(value)&&(/\b(note|sing)\b/.test(value)||!/\b(idle|dance|hey|death)\b/.test(value)));}).sort((a,b)=>Number(/\b(note|sing)\b/.test(normalized(b[0])))-Number(/\b(note|sing)\b/.test(normalized(a[0])))||Number(/\b(bf|senpai)\b/.test(normalized(b[0])))-Number(/\b(bf|senpai)\b/.test(normalized(a[0]))))[0];
+      return{idle:idle?idle[0]:entries[0]?.[0]||"",sing:directions.map(direction=>findDirection(direction,false)?.[0]||""),miss:directions.map((direction,index)=>findDirection(direction,true)?.[0]||findDirection(direction,false)?.[0]||"")};
+    }
+    async function loadCharacterAsset(asset){
+      const base="images/characters/",atlasResponse=await fetch(new URL(base+asset.atlas,document.baseURI));
+      if(!atlasResponse.ok)throw new Error(`${asset.atlas} returned HTTP ${atlasResponse.status}`);
+      const atlasText=await atlasResponse.text(),animations=asset.atlas.toLowerCase().endsWith(".xml")?parseCharacterXml(atlasText):parseCharacterText(atlasText);
+      const image=new Image();image.src=new URL(base+asset.image,document.baseURI).href;await image.decode();
+      if(!animations.size)throw new Error(`${asset.atlas} contains no animations`);
+      characters.set(asset.id,{...asset,image,animations,mapped:mapCharacterAnimations(animations)});
+    }
+    async function importCharacterPair(imageFile,atlasFile){
+      const atlasText=await atlasFile.text(),animations=atlasFile.name.toLowerCase().endsWith(".xml")?parseCharacterXml(atlasText):parseCharacterText(atlasText);
+      if(!animations.size)throw new Error(`${atlasFile.name} contains no sprite frames`);
+      const image=new Image(),imageUrl=URL.createObjectURL(imageFile);
+      try{
+        image.src=imageUrl;await image.decode();
+        for(const frames of animations.values())for(const frame of frames)if(frame.x<0||frame.y<0||frame.width<=0||frame.height<=0||frame.x+frame.width>image.naturalWidth||frame.y+frame.height>image.naturalHeight)throw new Error(`${atlasFile.name} has frames outside ${imageFile.name}`);
+        const fitTrimmedFrames=[...animations.values()].flat().some(frame=>frame.frameWidth>frame.width*2||frame.frameHeight>frame.height*2),baseName=imageFile.name.replace(/\.png$/i,""),slug=baseName.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"character",id=`imported-${slug}`,label=baseName.replace(/(^|[\s_-])([a-z])/g,(_,separator,letter)=>separator+letter.toUpperCase()),asset={id,label,atlas:atlasFile.name,image:imageFile.name,fitTrimmedFrames};
+        const oldUrl=importedCharacterUrls.get(id);if(oldUrl)URL.revokeObjectURL(oldUrl);
+        importedCharacterUrls.set(id,imageUrl);
+        if(!characterAssets.some(item=>item.id===id))characterAssets.push(asset);
+        characters.set(id,{...asset,image,animations,mapped:mapCharacterAnimations(animations)});
+        return asset.label;
+      }catch(error){URL.revokeObjectURL(imageUrl);throw error;}
+    }
+    async function importCharacterFiles(files){
+      const groups=new Map();
+      for(const file of files){
+        const extension=/\.(png|xml|txt)$/i.exec(file.name)?.[1]?.toLowerCase();
+        if(!extension)continue;
+        const stem=file.name.replace(/\.(png|xml|txt)$/i,"").toLowerCase();
+        if(!groups.has(stem))groups.set(stem,{});
+        const group=groups.get(stem);
+        if(group[extension])group.error=`Duplicate .${extension} files named ${file.name}`;
+        else group[extension]=file;
+      }
+      let imported=0;const errors=[];
+      for(const [stem,group] of groups){
+        if(group.error){errors.push(group.error);continue;}
+        const atlas=group.xml||group.txt;
+        if(!group.png||!atlas){errors.push(`${stem}: select a matching .png and .xml or .txt atlas`);continue;}
+        try{await importCharacterPair(group.png,atlas);imported++;}
+        catch(error){errors.push(`${stem}: ${error.message}`);}
+      }
+      if(imported){renderCharacterSelects();drawCharacters();}
+      const summary=errors.length?`${imported} imported · ${errors.join("; ")}`:`${imported} character${imported===1?"":"s"} imported`;
+      $("characterLoadStatus").textContent=`${characters.size} characters ready · ${summary}`;
+      setStatus(errors.length?`Character import: ${summary}`:`Character import complete: ${summary}`);
+    }
+    $("characterImportInput").addEventListener("change",async event=>{
+      const files=[...event.target.files];if(!files.length)return;
+      $("characterLoadStatus").textContent="Parsing imported characters…";
+      try{await importCharacterFiles(files);}
+      finally{event.target.value="";}
+    });
+    $("characterFolderInput").addEventListener("change",async event=>{
+      const files=[...event.target.files];if(!files.length)return;
+      $("characterLoadStatus").textContent="Parsing character folder…";
+      try{await importCharacterFiles(files);}
+      finally{event.target.value="";}
+    });
+    function restoreCharacterSelections(){
+      try{
+        const stored=JSON.parse(localStorage.getItem("miniFnfCharacterSelections")||"{}");
+        if(stored.player===null||characters.has(stored.player))selectedPlayerCharacter=basePlayerCharacter=stored.player;
+        if(stored.opponent===null||characters.has(stored.opponent))selectedOpponentCharacter=baseOpponentCharacter=stored.opponent;
+      }catch(error){console.error("Could not load character selections",error);}
+    }
+    function saveCharacterSelections(){
+      try{localStorage.setItem("miniFnfCharacterSelections",JSON.stringify({player:selectedPlayerCharacter,opponent:selectedOpponentCharacter}));}
+      catch(error){console.error("Could not save character selections",error);setStatus("Character selection changed for this session, but could not be saved in this browser.");}
+    }
+    function renderCharacterSelects(){
+      renderEventCharacterOptions();
+      for(const side of ["opponent","player"]){
+        const select=$(`${side}CharacterSelect`);
+        select.replaceChildren();
+        const emptyOption=document.createElement("option");emptyOption.value="";emptyOption.textContent="None";select.append(emptyOption);
+        for(const asset of characterAssets)if(characters.has(asset.id)){const option=document.createElement("option");option.value=asset.id;option.textContent=asset.label;select.append(option);}
+        const target=side==="opponent"?selectedOpponentCharacter:selectedPlayerCharacter;
+        if(target!==null&&![...select.options].some(option=>option.value===target)){
+          const option=document.createElement("option");option.value=target;option.textContent=`${target} (not loaded)`;select.append(option);
+        }
+        select.value=target===null?"":target;
+        select.disabled=false;
+      }
+      $("opponentCharacterCaption").textContent=characters.get(selectedOpponentCharacter)?.label||"None";
+      $("playerCharacterCaption").textContent=characters.get(selectedPlayerCharacter)?.label||"None";
+    }
+    function renderEventCharacterOptions(){
+      const select=$("eventCharacter"),current=select.value;
+      select.replaceChildren();
+      const none=document.createElement("option");none.value="";none.textContent="None";select.append(none);
+      for(const asset of characterAssets){const option=document.createElement("option");option.value=asset.id;option.textContent=asset.label;select.append(option);}
+      if(current&&!characterAssets.some(asset=>asset.id===current)){const option=document.createElement("option");option.value=current;option.textContent=`${current} (not loaded)`;select.append(option);}
+      select.value=current||characterAssets[0]?.id||"";
+    }
+    function renderEvents(){
+      const list=$("eventList");list.replaceChildren();
+      if(!events.length){list.innerHTML='<div class="empty">No events yet.</div>';return;}
+      events.sort((a,b)=>a.beat-b.beat);
+      for(const event of events){
+        const row=document.createElement("div"),label=document.createElement("span"),character=document.createElement("select"),remove=document.createElement("button");
+        row.className="event-item";label.textContent=`Beat ${event.beat+1} · ${event.side[0].toUpperCase()+event.side.slice(1)}`;
+        character.setAttribute("aria-label",`Character for ${event.side} event at beat ${event.beat+1}`);
+        character.append(...[...$("eventCharacter").options].map(option=>option.cloneNode(true)));
+        if(event.character&&![...character.options].some(option=>option.value===event.character)){const option=document.createElement("option");option.value=event.character;option.textContent=`${event.character} (not loaded)`;character.append(option);}
+        character.value=event.character||"";
+        character.addEventListener("change",()=>{
+          remember();event.character=character.value||null;
+          resetCharacterEvents();updateCharacterEvents();
+          renderEvents();
+        });
+        remove.textContent="×";remove.title="Remove event";remove.onclick=()=>{remember();events=events.filter(item=>item.id!==event.id);resetCharacterEvents();updateCharacterEvents();renderEvents();};
+        row.append(label,character,remove);list.append(row);
+      }
+    }
+    function updateCharacterEvents(){
+      for(const event of events.slice().sort((a,b)=>a.beat-b.beat)){
+        if(playedCharacterEvents.has(event.id)||timeAtBeat(event.beat)>playhead)continue;
+        playedCharacterEvents.add(event.id);
+        if(event.side==="player")selectedPlayerCharacter=event.character;else selectedOpponentCharacter=event.character;
+        renderCharacterSelects();
+        if(event.side==="player")playCharacterAnimation(characters.get(selectedPlayerCharacter)?.mapped.idle,"player",true);else playCharacterAnimation(characters.get(selectedOpponentCharacter)?.mapped.idle,"opponent",true);
+      }
+      drawCharacters();
+    }
+    function resetCharacterEvents(){
+      playedCharacterEvents.clear();selectedPlayerCharacter=basePlayerCharacter;selectedOpponentCharacter=baseOpponentCharacter;
+      renderCharacterSelects();
+      playCharacterAnimation(characters.get(selectedPlayerCharacter)?.mapped.idle,"player",true);
+      playCharacterAnimation(characters.get(selectedOpponentCharacter)?.mapped.idle,"opponent",true);
+    }
+    function changeSelectedCharacter(side){
+      if(side==="opponent")selectedOpponentCharacter=baseOpponentCharacter=$("opponentCharacterSelect").value||null;else selectedPlayerCharacter=basePlayerCharacter=$("playerCharacterSelect").value||null;
+      saveCharacterSelections();renderCharacterSelects();
+      if(side==="opponent")playCharacterAnimation(characters.get(selectedOpponentCharacter)?.mapped.idle,"opponent",true);else playCharacterAnimation(characters.get(selectedPlayerCharacter)?.mapped.idle,"player",true);
+      drawCharacters();
+    }
+    $("opponentCharacterSelect").addEventListener("change",()=>changeSelectedCharacter("opponent"));
+    $("playerCharacterSelect").addEventListener("change",()=>changeSelectedCharacter("player"));
+    async function loadCharacterAtlas(){
+      if(location.protocol==="file:"){
+        restoreCharacterSelections();renderCharacterSelects();
+        $("characterLoadStatus").textContent="Choose the images/characters folder to load its XML atlases";
+        setStatus("Character sprites: browsers block XML loading from file://; choose the images/characters folder.");
+        return;
+      }
+      const results=await Promise.allSettled(characterAssets.map(loadCharacterAsset));
+      characterLoadErrors=results.flatMap((result,index)=>{if(result.status==="fulfilled")return[];const message=`${characterAssets[index].label}: ${result.reason.message}`;console.error(`Could not load ${message}`);return[message];});
+      restoreCharacterSelections();renderCharacterSelects();
+      $("characterLoadStatus").textContent=characterLoadErrors.length?`${characters.size} loaded · ${characterLoadErrors.length} unavailable`:`${characters.size} characters ready`;
+      if(characterLoadErrors.length)setStatus(`Character sprites: ${characterLoadErrors.join("; ")}`);
+      playCharacterAnimation(characters.get(selectedPlayerCharacter)?.mapped.idle,"player",true);
+      playCharacterAnimation(characters.get(selectedOpponentCharacter)?.mapped.idle,"opponent",true);
+      drawCharacters();
+    }
+    function scheduleCharacterAnimationFrame(){if(characterAnimationFrame)return;characterAnimationFrame=requestAnimationFrame(()=>{characterAnimationFrame=0;drawCharacters();if(!playerCharacterMotion.loop||!opponentCharacterMotion.loop)scheduleCharacterAnimationFrame();});}
+    function playCharacterAnimation(animationName,side="player",loop=false){
+      const character=characters.get(side==="opponent"?selectedOpponentCharacter:selectedPlayerCharacter);
+      const name=animationName||character?.mapped.idle;
+      if(!character||!character.animations.has(name))return;
+      const nextMotion={name,startedAt:performance.now(),loop};
+      if(side==="opponent")opponentCharacterMotion=nextMotion;else playerCharacterMotion=nextMotion;
+      drawCharacters();if(!loop)scheduleCharacterAnimationFrame();
+    }
+    function playCharacterNote(lane,side="player",miss=false){const character=characters.get(side==="opponent"?selectedOpponentCharacter:selectedPlayerCharacter),direction=lane-(side==="opponent"?0:4);playCharacterAnimation(character?.mapped[miss?"miss":"sing"][direction],side);}
+    function drawCharacter(targetCanvas,targetContext,motion,side){
+      if(!targetContext)return;
+      const width=targetCanvas.clientWidth,height=targetCanvas.clientHeight;
+      if(!width||!height)return;
+      targetContext.clearRect(0,0,width,height);
+      const characterId=side==="opponent"?selectedOpponentCharacter:selectedPlayerCharacter;
+      if(characterId===null)return;
+      const character=characters.get(characterId);
+      if(!character){targetContext.fillStyle=characterLoadErrors.length?"#ff9cbb":"#99a7bb";targetContext.font="12px system-ui";targetContext.textAlign="center";targetContext.textBaseline="middle";targetContext.fillText(characterLoadErrors.join("; ")||"Loading character sprites…",width/2,height/2,width-16);return;}
+      const idle=character.animations.get(character.mapped.idle)||[];
+      let frames=character.animations.get(motion.name)||idle;
+      if(!motion.loop&&performance.now()-motion.startedAt>=frames.length*1000/24){motion.name=character.mapped.idle;motion.startedAt=performance.now();motion.loop=true;frames=idle;}
+      if(!frames.length)return;
+      const elapsed=(performance.now()-motion.startedAt)/1000,frameIndex=motion.loop?Math.floor(elapsed*24)%frames.length:Math.min(frames.length-1,Math.floor(elapsed*24)),frame=frames[frameIndex];
+      const scale=character.fitTrimmedFrames?Math.min(width*.9/frame.width,height*.84/frame.height):Math.min(width*.9/frame.frameWidth,height*.84/frame.frameHeight),drawWidth=frame.width*scale,drawHeight=frame.height*scale;
+      const x=character.fitTrimmedFrames?(width-drawWidth)/2:(width-frame.frameWidth*scale)/2-frame.offsetX*scale,y=character.fitTrimmedFrames?height-5-drawHeight:height-5-frame.frameHeight*scale-frame.offsetY*scale;
+      targetContext.drawImage(character.image,frame.x,frame.y,frame.width,frame.height,x,y,drawWidth,drawHeight);
+    }
+    function drawCharacters(){drawCharacter(characterCanvas,characterCtx,playerCharacterMotion,"player");drawCharacter(opponentCanvas,opponentCtx,opponentCharacterMotion,"opponent");}
+    function updatePlaytestTotals(){const playerNotes=notes.filter(note=>note.lane>=4);game.totalNotes=playerNotes.length;game.totalAccuracyPoints=playerNotes.reduce((total,note)=>total+350+Math.floor(Math.max(0,note.length||0)*4+1e-9)*10,0);}
+    function updatePlaytestStats(){ $("playtestScore").textContent=game.score.toLocaleString();$("playtestCombo").textContent=game.combo;$("playtestHits").textContent=game.hits;$("playtestMisses").textContent=game.misses;$("playtestResult").textContent=game.result;$("playtestResult").classList.toggle("miss",game.resultIsMiss);$("startPlaytestBtn").disabled=game.active||Boolean(game.restartAt);$("stopPlaytestBtn").disabled=!game.active&&!game.restartAt;const health=Math.max(0,Math.min(100,game.health)),accuracy=game.totalAccuracyPoints?game.accuracyPoints/game.totalAccuracyPoints*100:100;$("healthBar").style.setProperty("--health",`${health}%`);$("healthBar").setAttribute("aria-valuenow",health.toFixed(1));$("healthBar").setAttribute("aria-valuetext",`${health.toFixed(1)}% health`);$("playtestAccuracy").textContent=`${Math.max(0,Math.min(100,accuracy)).toFixed(2)}%`;}
+    function drawPlaytestArrow(arrow,x,y,size,color){const angle={"→":0,"↓":Math.PI/2,"←":Math.PI,"↑":-Math.PI/2}[arrow];playtestCtx.save();playtestCtx.translate(x,y);playtestCtx.rotate(angle);playtestCtx.scale(size,size);playtestCtx.beginPath();playtestCtx.moveTo(-.46,-.17);playtestCtx.quadraticCurveTo(-.5,0,-.46,.17);playtestCtx.quadraticCurveTo(-.44,.21,-.39,.21);playtestCtx.lineTo(-.11,.21);playtestCtx.lineTo(-.24,.34);playtestCtx.quadraticCurveTo(-.29,.39,-.23,.44);playtestCtx.lineTo(-.16,.5);playtestCtx.quadraticCurveTo(-.12,.54,-.07,.5);playtestCtx.lineTo(.4,.12);playtestCtx.quadraticCurveTo(.51,0,.4,-.12);playtestCtx.lineTo(-.07,-.5);playtestCtx.quadraticCurveTo(-.12,-.54,-.16,-.5);playtestCtx.lineTo(-.23,-.44);playtestCtx.quadraticCurveTo(-.29,-.39,-.24,-.34);playtestCtx.lineTo(-.11,-.21);playtestCtx.lineTo(-.39,-.21);playtestCtx.quadraticCurveTo(-.44,-.21,-.46,-.17);playtestCtx.closePath();playtestCtx.lineJoin="round";playtestCtx.lineWidth=.11;playtestCtx.strokeStyle="#050608";playtestCtx.fillStyle=color;playtestCtx.stroke();playtestCtx.fill();playtestCtx.restore();}
+    function drawPlaytest(){
+      if(!playtestCtx)return;const w=playtestCanvas.clientWidth,h=playtestCanvas.clientHeight;if(!w||!h)return;
+      playtestCtx.clearRect(0,0,w,h);playtestCtx.fillStyle="#111720";playtestCtx.fillRect(0,0,w,h);
+      const laneW=w/4,targetY=h*.78,pixelsPerSecond=100,noteHeight=14,playerNotes=notes.filter(n=>n.lane>=4),displayedKeys=playtestKeys.map(keyName),currentBeat=beatAtTime(playhead);
+      for(let lane=0;lane<4;lane++){playtestCtx.fillStyle=lane%2?"#191e29":"#151b25";playtestCtx.fillRect(lane*laneW,0,laneW,h);playtestCtx.strokeStyle="#30394a";playtestCtx.lineWidth=1;playtestCtx.beginPath();playtestCtx.moveTo(lane*laneW,0);playtestCtx.lineTo(lane*laneW,h);playtestCtx.stroke();}
+      playtestCtx.fillStyle="#202a37";playtestCtx.fillRect(0,targetY-16,w,32);
+      for(let lane=0;lane<4;lane++){const centerX=(lane+.5)*laneW;drawPlaytestArrow(laneNames[lane+4],centerX,targetY,38,game.held.has(lane)?"#fff0a8":"#b9c8d0");playtestCtx.fillStyle="#99a7bb";playtestCtx.font="11px system-ui";playtestCtx.textAlign="center";playtestCtx.textBaseline="top";playtestCtx.fillText(displayedKeys[lane],centerX,targetY+25);}
+      for(const note of playerNotes){if(game.judged.has(note.id)&&!game.sustainHolds.has(note.id))continue;const y=targetY-scrollDistanceBetweenBeats(currentBeat,note.beat)*pixelsPerSecond,lane=note.lane-4,centerX=(lane+.5)*laneW,endBeat=note.beat+note.length,tailHeight=Math.max(0,scrollDistanceBetweenBeats(note.beat,endBeat)*pixelsPerSecond),arrowSize=Math.min(42,laneW*.62);if(y+arrowSize<0||y-tailHeight>h)continue;if(tailHeight>0){playtestCtx.fillStyle="#b94b76";playtestCtx.beginPath();playtestCtx.roundRect(centerX-laneW*.11,y-tailHeight,laneW*.22,tailHeight+arrowSize/2,laneW*.11);playtestCtx.fill();}drawPlaytestArrow(laneNames[note.lane],centerX,y,arrowSize,"#b9c8d0");}
+      playtestCtx.fillStyle="#d7e2f2";playtestCtx.font="12px system-ui";playtestCtx.textAlign="left";playtestCtx.textBaseline="top";playtestCtx.fillText(game.active?"Hit the notes as they reach the receptors":"Press Start playtest to begin",9,8);
+      updatePlaytestStats();drawCharacters();
+    }
+    function judgePlaytestNote(note,offset){game.judged.add(note.id);game.hits++;game.combo++;const absoluteOffset=Math.abs(offset),points=absoluteOffset<=.045?350:absoluteOffset<=.09?200:50;game.score+=points;game.accuracyPoints+=points;game.health=Math.min(100,game.health+5);playCharacterNote(note.lane);const tickCount=Math.floor(Math.max(0,note.length||0)*4+1e-9);if(tickCount){const elapsedTicks=Math.floor(Math.max(0,(beatAtTime(playhead)-note.beat)*4)+1e-9);game.sustainHolds.set(note.id,{note,lane:note.lane-4,nextTick:Math.min(tickCount+1,Math.max(1,elapsedTicks+1)),tickCount});}game.result=absoluteOffset<=.045?"Sick!":absoluteOffset<=.09?"Good":"Okay";game.resultIsMiss=false;}
+    function updateOpponentHits(){let lastHit=null;for(const note of notes){if(note.lane>=4||game.opponentJudged.has(note.id)||timeAtBeat(note.beat)>playhead)continue;game.opponentJudged.add(note.id);lastHit=note;}if(lastHit)playCharacterNote(lastHit.lane,"opponent");}
+    function updateSustainScores(){for(const[noteId,hold]of game.sustainHolds){while(hold.nextTick<=hold.tickCount&&playhead>=timeAtBeat(hold.note.beat+hold.nextTick/4)){if(game.held.has(hold.lane)){game.score+=10;game.accuracyPoints+=10;game.result="Hold +10";game.resultIsMiss=false;}hold.nextTick++;}if(hold.nextTick>hold.tickCount)game.sustainHolds.delete(noteId);}}
+    function playMissSound(){const sound=missSounds[Math.floor(Math.random()*missSounds.length)];sound.pause();sound.currentTime=0;const playback=sound.play();if(playback)playback.catch(error=>{console.error(`Could not play ${sound.currentSrc||sound.src}`,error);setStatus(`Miss sound failed to play: ${error.message}`);});}
+    function failPlaytest(){game.health=0;game.active=false;game.restartAt=performance.now()+5000;game.held.clear();game.sustainHolds.clear();playing=false;$("playBtn").textContent="▶ Play";for(const track of Object.values(tracks))if(track.audio)track.audio.pause();game.result="Restarting in 5";game.resultIsMiss=true;setStatus("Health depleted · playtest restarts in 5 seconds");}
+    function updatePlaytestMisses(){for(const note of notes){if(!game.active)break;if(note.lane<4||game.judged.has(note.id))continue;if(playhead-timeAtBeat(note.beat)>.18){game.judged.add(note.id);game.misses++;game.combo=0;game.health=Math.max(0,game.health-1);game.result="Miss";game.resultIsMiss=true;playCharacterNote(note.lane,"player",true);playMissSound();if(game.health===0)failPlaytest();}}}
+    function handlePlaytestKeyDown(e){
+      if(!game.active||!playing)return false;const lane=playtestKeys.indexOf(e.code);if(lane<0)return false;e.preventDefault();if(e.repeat||game.held.has(lane))return true;game.held.add(lane);
+      const candidate=notes.filter(note=>note.lane===lane+4&&!game.judged.has(note.id)).map(note=>({note,offset:timeAtBeat(note.beat)-playhead})).sort((a,b)=>Math.abs(a.offset)-Math.abs(b.offset))[0];
+      if(candidate&&Math.abs(candidate.offset)<=.18)judgePlaytestNote(candidate.note,candidate.offset);else{game.result="No note";game.resultIsMiss=false;}
+      drawPlaytest();return true;
+    }
+    function keyName(code){return code.replace(/^Arrow/,"").replace(/^Key/,"").replace(/^Digit/,"").replace(/^Numpad/,"Num ");}
+    function renderKeyBindings(){const root=$("keyBindings");root.replaceChildren();for(let lane=0;lane<4;lane++){const row=document.createElement("div"),label=document.createElement("span"),button=document.createElement("button");row.className="key-bind";label.textContent=`${laneNames[lane+4]} Lane ${lane+4}`;button.textContent=bindingLane===lane?"Press a key…":keyName(playtestKeys[lane]);button.classList.toggle("listening",bindingLane===lane);button.setAttribute("aria-label",`Set key for player lane ${lane+4}`);button.onclick=()=>{bindingLane=lane;renderKeyBindings();setStatus(`Press a key for player lane ${lane+4} · Escape to cancel`);};row.append(label,button);root.append(row);}}
+    function savePlaytestKeys(){try{localStorage.setItem("miniFnfPlaytestKeys",JSON.stringify(playtestKeys));}catch(error){console.error("Could not save playtest key bindings",error);setStatus("Key binding changed for this session, but could not be saved in this browser.");}}
+    function resetPlaytest(){updatePlaytestTotals();game.active=true;game.restartAt=0;game.health=game.totalNotes?50:100;game.score=0;game.combo=0;game.hits=0;game.misses=0;game.accuracyPoints=0;game.judged.clear();game.opponentJudged.clear();game.held.clear();game.sustainHolds.clear();game.result="Ready";game.resultIsMiss=false;playhead=0;viewStart=0;resetCharacterEvents();}
+    function startPlaytest(){if(playing)pausePlayback();resetPlaytest();draw();togglePlayback();setStatus("Playtest started");}
+    function stopPlaytest(){if(!game.active&&!game.restartAt)return;game.active=false;game.restartAt=0;game.held.clear();game.sustainHolds.clear();pausePlayback();resetCharacterEvents();game.result="Playtest stopped";game.resultIsMiss=false;drawPlaytest();setStatus("Playtest stopped");}
+    $("startPlaytestBtn").onclick=startPlaytest;$("stopPlaytestBtn").onclick=stopPlaytest;renderKeyBindings();updatePlaytestStats();
+    function draw(){
+      if(!ctx)return;const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;
+      ctx.clearRect(0,0,w,h);ctx.fillStyle="#111720";ctx.fillRect(0,0,w,h);
+      const laneW=w/8, currentBeat=beatAtTime(playhead), startBeat=Math.max(0,Math.floor(beatAtTime(viewStart))-1), endBeat=beatAtTime(viewStart+h/pxPerSecond)+2;
+      for(let lane=0;lane<8;lane++){ctx.fillStyle=lane<4?(lane%2?"#171e2a":"#151c27"):(lane%2?"#211b29":"#1d1925");ctx.fillRect(lane*laneW,0,laneW,h);}
+      ctx.fillStyle="#1d2532";ctx.fillRect(0,0,w,topPad);
+      for(let i=0;i<=8;i++){ctx.strokeStyle=i===4?"#66758e":"#30394a";ctx.lineWidth=i===4?2:1;ctx.beginPath();ctx.moveTo(i*laneW,0);ctx.lineTo(i*laneW,h);ctx.stroke();}
+      ctx.font="11px system-ui";ctx.textAlign="center";ctx.textBaseline="middle";
+      for(let i=0;i<8;i++){ctx.fillStyle=i<4?"#9bb9ec":"#ff9cbb";ctx.fillText(`${i} ${laneNames[i]}`,i*laneW+laneW/2,13);}
+      const beatMin=Math.floor(startBeat),beatMax=Math.ceil(endBeat);
+      for(let b=beatMin;b<=beatMax;b++){const y=yFromBeat(b);if(y<topPad||y>h)continue;ctx.strokeStyle=b%4===0?"#465267":"#2b3443";ctx.lineWidth=b%4===0?1.4:1;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();if(b%4===0){ctx.fillStyle="#aab6ca";ctx.textAlign="left";ctx.fillText(`M${Math.floor(b/4)+1}`,4,y+10);}}
+      drawChartWaveform("opponent",0,laneW,h);
+      drawChartWaveform("player",4,laneW,h);
+      for(const n of notes){const y=yFromBeat(n.beat),x=n.lane*laneW+laneW*.16,nw=laneW*.68,nh=14,tail=Math.max(0,n.length||0)*60/(Number($("bpmInput").value)||120)*pxPerSecond;if(y<-tail||y>h)continue;const color=n.lane<4?"#6ab9ff":"#ff7eaa";ctx.fillStyle=n.lane<4?"#347cb5":"#bd4c79";if(tail>2)ctx.fillRect(x+nw*.37,y+nh-1,nw*.26,tail);ctx.beginPath();ctx.roundRect(x,y,nw,nh,4);ctx.fill();ctx.fillStyle=color;ctx.beginPath();ctx.roundRect(x+2,y+2,nw-4,nh-4,3);ctx.fill();if(selected.has(n.id)){ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.strokeRect(x-2,y-2,nw+4,nh+4);}if(tail>10){ctx.fillStyle=color;ctx.fillRect(x+nw*.2,y+nh+tail-4,nw*.6,5);}}
+      const py=topPad+(playhead-viewStart)*pxPerSecond;ctx.strokeStyle="#ffdf67";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,py);ctx.lineTo(w,py);ctx.stroke();ctx.fillStyle="#ffdf67";ctx.beginPath();ctx.moveTo(0,py-5);ctx.lineTo(9,py);ctx.lineTo(0,py+5);ctx.fill();
+      updateReadouts();drawPlaytest();
+    }
+    function point(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};}
+    function hitNote(x,y){const laneW=canvas.clientWidth/8,lane=laneFromX(x);for(let i=notes.length-1;i>=0;i--){const n=notes[i];if(n.lane!==lane)continue;const ny=yFromBeat(n.beat),tail=(n.length||0)*60/(Number($("bpmInput").value)||120)*pxPerSecond;if(y>=ny-4&&y<=ny+14+tail+3)return n;}return null;}
+    function onPointerDown(e){
+      if(e.button===2){const p=point(e),hit=hitNote(p.x,p.y);if(hit){remember();notes=notes.filter(n=>n.id!==hit.id);selected.delete(hit.id);draw();setStatus("Note deleted");}return;}
+      if(e.button!==0)return;const p=point(e),beat=beatFromY(p.y),lane=laneFromX(p.x),hit=hitNote(p.x,p.y);
+      if(p.y<topPad){playhead=Math.max(0,viewStart+(p.y-topPad)/pxPerSecond);draw();return;}
+      if(tool==="draw"){
+        if(hit){gesture=null;}
+        else{remember();const note={id:crypto.randomUUID(),lane,beat,length:0};notes.push(note);gesture={kind:"draw",noteId:note.id,startBeat:beat,lane,startY:p.y};}
+      }else if(hit){if(!selected.has(hit.id)){if(!e.shiftKey)selected.clear();selected.add(hit.id);}const ny=yFromBeat(hit.beat),tail=(hit.length||0)*60/(Number($("bpmInput").value)||120)*pxPerSecond;gesture={kind:tail>0&&p.y>=ny+14+tail-10?"resize":"move",startBeat:beatFromY(p.y),startLane:lane,selected: [...selected],originals:notes.filter(n=>selected.has(n.id)).map(n=>({id:n.id,beat:n.beat,lane:n.lane,length:n.length||0}))};}
+      else{if(!e.shiftKey)selected.clear();gesture={kind:"box",x:p.x,y:p.y,currentX:p.x,currentY:p.y};}
+      canvas.setPointerCapture(e.pointerId);draw();
+    }
+    function onPointerMove(e){if(!gesture)return;const p=point(e),b=beatFromY(p.y),lane=laneFromX(p.x);if(gesture.kind==="draw"){const n=notes.find(x=>x.id===gesture.noteId);if(n&&lane===gesture.lane)n.length=Math.max(0,b-gesture.startBeat);draw();}
+      else if(gesture.kind==="move"){if(!gesture.changed){remember();gesture.changed=true;}const db=b-gesture.startBeat,dl=lane-gesture.startLane;for(const o of gesture.originals){const n=notes.find(x=>x.id===o.id);if(n){n.beat=Math.max(0,o.beat+db);n.lane=Math.max(0,Math.min(7,o.lane+dl));}}draw();}
+      else if(gesture.kind==="resize"){if(!gesture.changed){remember();gesture.changed=true;}const o=gesture.originals[0],n=notes.find(x=>x.id===o.id);if(n)n.length=Math.max(0,b-n.beat);draw();}
+      else if(gesture.kind==="box"){gesture.currentX=p.x;gesture.currentY=p.y;draw();const x=Math.min(gesture.x,p.x),y=Math.min(gesture.y,p.y),ww=Math.abs(gesture.x-p.x),hh=Math.abs(gesture.y-p.y);ctx.strokeStyle="#55d7ee";ctx.setLineDash([4,3]);ctx.strokeRect(x,y,ww,hh);ctx.setLineDash([]);}
+    }
+    function onPointerUp(e){if(!gesture)return;const g=gesture,p=point(e);if(g.kind==="box"){const x1=Math.min(g.x,p.x),x2=Math.max(g.x,p.x),y1=Math.min(g.y,p.y),y2=Math.max(g.y,p.y);for(const n of notes){const x=(n.lane+.5)*canvas.clientWidth/8,y=yFromBeat(n.beat);if(x>=x1&&x<=x2&&y>=y1&&y<=y2)selected.add(n.id);}}
+      else if(g.kind==="draw"){const n=notes.find(x=>x.id===g.noteId);if(n&&p.y<g.startY){n.beat=beatFromY(p.y);n.length=Math.max(0,g.startBeat-n.beat);} }
+      gesture=null;draw();
+    }
+    canvas.addEventListener("pointerdown",onPointerDown);canvas.addEventListener("pointermove",onPointerMove);canvas.addEventListener("pointerup",onPointerUp);canvas.addEventListener("contextmenu",e=>e.preventDefault());
+    canvas.addEventListener("wheel",e=>{e.preventDefault();viewStart=Math.max(0,viewStart+e.deltaY/pxPerSecond);draw();},{passive:false});
+    function setTool(next){tool=next;document.querySelectorAll("[data-tool]").forEach(b=>b.classList.toggle("active",b.dataset.tool===tool));canvas.style.cursor=tool==="draw"?"crosshair":"default";}
+    document.querySelectorAll("[data-tool]").forEach(b=>b.addEventListener("click",()=>setTool(b.dataset.tool)));
+    function copyNotes(){clipboard=notes.filter(n=>selected.has(n.id)).map(n=>({...n}));setStatus(`${clipboard.length} note(s) copied`);}
+    function pasteNotes(){if(!clipboard.length)return;remember();const min=Math.min(...clipboard.map(n=>n.beat)),base=snapBeat(beatAtTime(playhead));selected.clear();for(const n of clipboard){const copy={...n,id:crypto.randomUUID(),beat:base+(n.beat-min)};notes.push(copy);selected.add(copy.id);}draw();setStatus(`${clipboard.length} note(s) pasted`);}
+    $("undoBtn").onclick=undo;$("redoBtn").onclick=redo;$("copyBtn").onclick=copyNotes;$("pasteBtn").onclick=pasteNotes;
+    document.addEventListener("keydown",e=>{
+      if(bindingLane!==null){
+        e.preventDefault();
+        if(e.code==="Escape"){bindingLane=null;renderKeyBindings();setStatus("Key binding cancelled");return;}
+        if(e.code.startsWith("Shift")||e.code.startsWith("Control")||e.code.startsWith("Alt")||e.code.startsWith("Meta"))return;
+        const lane=bindingLane,duplicate=playtestKeys.indexOf(e.code);
+        if(duplicate>=0)playtestKeys[duplicate]=playtestKeys[lane];
+        playtestKeys[lane]=e.code;bindingLane=null;savePlaytestKeys();renderKeyBindings();setStatus(`Player lane ${lane+4} bound to ${keyName(e.code)}`);return;
+      }
+      if(handlePlaytestKeyDown(e))return;
+      if(e.target.matches("input,select,textarea"))return;
+      if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="z"){e.preventDefault();undo();}
+      else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="y"){e.preventDefault();redo();}
+      else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="c"){e.preventDefault();copyNotes();}
+      else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="v"){e.preventDefault();pasteNotes();}
+      else if(e.code==="Space"){e.preventDefault();togglePlayback();}
+      else if(e.key==="Delete"||e.key==="Backspace"){if(selected.size){remember();notes=notes.filter(n=>!selected.has(n.id));selected.clear();draw();}}
+    });
+    document.addEventListener("keyup",e=>{const lane=playtestKeys.indexOf(e.code);if(lane>=0&&game.held.delete(lane))drawPlaytest();});
+    function renderControls(){const el=$("controlList");el.replaceChildren();if(!controls.length){el.innerHTML='<div class="empty">No control changes yet.</div>';return;}controls.sort((a,b)=>a.beat-b.beat||a.type.localeCompare(b.type)).forEach(c=>{const row=document.createElement("div");row.className="control-item";const label=document.createElement("span");label.textContent=`Beat ${c.beat+1} · ${c.type==="bpm"?"BPM":"Speed"}`;const value=document.createElement("input");value.type="number";value.min=c.type==="bpm"?"1":".1";value.step=".1";value.value=c.value;value.setAttribute("aria-label",`${c.type} value at beat ${c.beat+1}`);value.addEventListener("change",()=>{const v=Number(value.value);if(!Number.isFinite(v)||v<=0){value.value=c.value;return;}remember();c.value=v;draw();});const remove=document.createElement("button");remove.textContent="×";remove.title="Remove control change";remove.onclick=()=>{remember();controls=controls.filter(x=>x.id!==c.id);renderControls();draw();};row.append(label,value,remove);el.append(row);});}
+    $("addControlBtn").onclick=()=>{const type=$("controlType").value,value=Number($("controlValue").value),beat=snapBeat(beatAtTime(playhead));if(!Number.isFinite(value)||value<=0){setStatus("Enter a positive control value");return;}remember();controls.push({id:crypto.randomUUID(),type,beat,value});renderControls();draw();setStatus(`${type==="bpm"?"BPM":"Scroll speed"} change added at beat ${beat+1}`);};
+    $("addEventBtn").onclick=()=>{
+      const side=$("eventSide").value,character=$("eventCharacter").value||null,beat=snapBeat(beatAtTime(playhead));
+      remember();events.push({id:crypto.randomUUID(),type:"change-character",beat,side,character});renderEvents();
+      setStatus(`Change character event added for ${side} at beat ${beat+1}`);
+    };
+    $("controlType").onchange=()=>{$("controlValue").value=$("controlType").value==="bpm"?$("bpmInput").value:$("speedInput").value;};
+    $("bpmInput").onchange=()=>{const v=Number($("bpmInput").value);if(!Number.isFinite(v)||v<=0){$("bpmInput").value=120;}else{draw();}};
+    $("speedInput").onchange=()=>{const v=Number($("speedInput").value);if(!Number.isFinite(v)||v<=0)$("speedInput").value=1;draw();};
+    $("snapSelect").onchange=draw;
+    async function ensureAudioContext(){if(!audioContext)audioContext=new(window.AudioContext||window.webkitAudioContext)();if(audioContext.state==="suspended")await audioContext.resume();return audioContext;}
+    function buildEnvelope(buffer){const step=Math.max(1,Math.floor(buffer.sampleRate/pxPerSecond/2)),length=Math.ceil(buffer.length/step),mins=new Float32Array(length),maxs=new Float32Array(length),channels=Array.from({length:buffer.numberOfChannels},(_,i)=>buffer.getChannelData(i));for(let bucket=0;bucket<length;bucket++){let min=1,max=-1;const end=Math.min(buffer.length,(bucket+1)*step);for(let i=bucket*step;i<end;i++)for(const channel of channels){const sample=channel[i];if(sample<min)min=sample;if(sample>max)max=sample;}mins[bucket]=min;maxs[bucket]=max;}return{step,mins,maxs};}
+    function drawChartWaveform(trackId,firstLane,laneW,h){const track=tracks[trackId];if(!track.envelope)return;const{step,mins,maxs}=track.envelope,center=(firstLane+2)*laneW,extent=laneW*1.7;ctx.save();ctx.strokeStyle=trackDefs.find(t=>t.id===trackId).color;ctx.globalAlpha=.36;ctx.lineWidth=1;ctx.beginPath();for(let y=topPad;y<h;y+=2){const firstTime=viewStart+(y-topPad)/pxPerSecond,lastTime=firstTime+2/pxPerSecond,firstBucket=Math.max(0,Math.floor(firstTime*track.buffer.sampleRate/step)),lastBucket=Math.min(mins.length-1,Math.floor(lastTime*track.buffer.sampleRate/step));if(firstTime>=track.duration||lastBucket<firstBucket)continue;let min=1,max=-1;for(let bucket=firstBucket;bucket<=lastBucket;bucket++){if(mins[bucket]<min)min=mins[bucket];if(maxs[bucket]>max)max=maxs[bucket];}ctx.moveTo(center+min*extent,y);ctx.lineTo(center+max*extent,y);}ctx.stroke();ctx.restore();}
+    function drawWave(trackId){const c=document.querySelector(`[data-wave="${trackId}"]`),g=c.getContext("2d"),r=c.getBoundingClientRect(),dpr=window.devicePixelRatio||1;c.width=Math.max(1,Math.round(r.width*dpr));c.height=Math.max(1,Math.round(r.height*dpr));g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,r.width,r.height);g.fillStyle="#111720";g.fillRect(0,0,r.width,r.height);const track=tracks[trackId],color=trackDefs.find(t=>t.id===trackId).color;if(!track.buffer){g.fillStyle="#8290a5";g.font="11px system-ui";g.fillText("No audio loaded",8,r.height/2+4);return;}const data=track.buffer.getChannelData(0),step=Math.max(1,Math.floor(data.length/r.width)),mid=r.height/2;g.strokeStyle=color;g.globalAlpha=.75;g.beginPath();for(let x=0;x<r.width;x++){let min=1,max=-1;for(let j=0;j<step;j++){const val=data[x*step+j]||0;if(val<min)min=val;if(val>max)max=val;}g.moveTo(x,mid+min*mid*.85);g.lineTo(x,mid+max*mid*.85);}g.stroke();g.globalAlpha=1;}
+    function renderAudioRows(){const root=$("audioRows");root.replaceChildren();for(const t of trackDefs){const row=document.createElement("div");row.className="audio-row";row.innerHTML=`<div class="track-label" style="color:${t.color}">${t.name}<small>${t.sub}</small></div><div class="wave-wrap"><canvas data-wave="${t.id}"></canvas></div><div class="track-actions"><label class="file-button">Import<input type="file" accept="audio/*" data-audio="${t.id}"></label><button data-clear="${t.id}">Clear</button></div>`;root.append(row);row.querySelector(`[data-audio="${t.id}"]`).addEventListener("change",e=>{if(e.target.files[0])loadAudio(t.id,e.target.files[0]);});row.querySelector(`[data-clear="${t.id}"]`).addEventListener("click",()=>clearAudio(t.id));}for(const t of trackDefs)drawWave(t.id);}
+    async function loadAudio(id,file){setStatus(`Loading ${file.name}…`);try{const context=await ensureAudioContext(),buffer=await context.decodeAudioData(await file.arrayBuffer()),envelope=buildEnvelope(buffer),old=tracks[id];if(old.url)URL.revokeObjectURL(old.url);if(old.audio)old.audio.pause();const audio=new Audio(URL.createObjectURL(file));audio.preload="auto";audio.onended=()=>{if(playing)pausePlayback();};tracks[id]={audio,buffer,envelope,url:audio.src,name:file.name,duration:buffer.duration};renderAudioRows();syncAudio();setStatus(`${file.name} loaded (${fmtTime(buffer.duration)})`);draw();}catch(error){console.error(error);setStatus(`Could not load ${file.name}: ${error.message||"unsupported audio format"}`);}}
+    function clearAudio(id){const t=tracks[id];if(t.audio)t.audio.pause();if(t.url)URL.revokeObjectURL(t.url);tracks[id]={audio:null,buffer:null,envelope:null,url:null,name:"",duration:0};renderAudioRows();draw();setStatus("Audio track cleared");}
+    function syncAudio(){for(const t of Object.values(tracks))if(t.audio){t.audio.playbackRate=Number($("playbackRate").value);if(Math.abs(t.audio.currentTime-playhead)>.15)t.audio.currentTime=Math.min(playhead,t.duration||playhead);}}
+    let lastPlaybackFrame=0;
+    async function playAudioTracks(){syncAudio();for(const t of Object.values(tracks))if(t.audio&&playhead<t.duration){t.audio.playbackRate=Number($("playbackRate").value);try{await t.audio.play();}catch(error){console.error(error);setStatus(`Audio playback failed: ${error.message}`);}}}
+    function playbackTick(now){
+      if(game.restartAt){
+        const remaining=game.restartAt-now;
+        if(remaining<=0){
+          resetPlaytest();playing=true;$("playBtn").textContent="Ⅱ Pause";lastPlaybackFrame=now;setStatus("Playtest restarted");void playAudioTracks();draw();raf=requestAnimationFrame(playbackTick);return;
+        }
+        game.result=`Restarting in ${Math.ceil(remaining/1000)}`;game.resultIsMiss=true;draw();raf=requestAnimationFrame(playbackTick);return;
+      }
+      if(!playing)return;
+      playhead+=(now-lastPlaybackFrame)/1000*Number($("playbackRate").value);lastPlaybackFrame=now;
+      if(playhead>viewStart+(canvas.clientHeight-topPad)/pxPerSecond-1)viewStart=Math.max(0,playhead-2);
+      updateCharacterEvents();
+      if(game.active){
+        updateOpponentHits();
+        updatePlaytestMisses();
+        if(game.restartAt){draw();raf=requestAnimationFrame(playbackTick);return;}
+        updateSustainScores();
+        const chartEnd=Math.max(2,...notes.map(n=>timeAtBeat(n.beat+n.length)),...events.map(event=>timeAtBeat(event.beat)),...Object.values(tracks).map(t=>t.duration));
+        if(playhead>chartEnd+.75){game.active=false;game.held.clear();game.sustainHolds.clear();const accuracy=game.totalAccuracyPoints?game.accuracyPoints/game.totalAccuracyPoints*100:100,perfect=accuracy>=99.999&&game.health>=99.999;game.health=perfect?100:game.health;game.result=perfect?"Perfect!":"Playtest complete";game.resultIsMiss=false;pausePlayback();setStatus(game.result);return;}
+      }
+      draw();raf=requestAnimationFrame(playbackTick);
+    }
+    async function togglePlayback(){if(game.restartAt)return;if(playing){pausePlayback();return;}playing=true;$("playBtn").textContent="Ⅱ Pause";await playAudioTracks();lastPlaybackFrame=performance.now();raf=requestAnimationFrame(playbackTick);}
+    function pausePlayback(){playing=false;$("playBtn").textContent="▶ Play";cancelAnimationFrame(raf);for(const t of Object.values(tracks))if(t.audio)t.audio.pause();draw();}
+    $("playBtn").onclick=togglePlayback;$("stopBtn").onclick=()=>{if(game.active)stopPlaytest();else pausePlayback();playhead=0;viewStart=0;resetCharacterEvents();syncAudio();draw();};
+    $("playbackRate").onchange=()=>{for(const t of Object.values(tracks))if(t.audio)t.audio.playbackRate=Number($("playbackRate").value);};
+    function exportChart(){const chart={format:"mini-fnf-chart",version:1,bpm:Number($("bpmInput").value),scrollSpeed:Number($("speedInput").value),notes:notes.map(({id,...n})=>n),controls:controls.map(({id,...c})=>c),events:events.map(({id,...event})=>event),audio:Object.fromEntries(trackDefs.map(t=>[t.id,tracks[t.id].name||null]))};const blob=new Blob([JSON.stringify(chart,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="chart.json";a.click();URL.revokeObjectURL(url);setStatus("Chart exported");}
+    $("exportBtn").onclick=exportChart;
+    function importMiniChart(data){
+      if(!Array.isArray(data.notes)||!Array.isArray(data.controls))throw new Error("Not a supported Mini FNF chart file");
+      const importedNotes=data.notes.map(n=>{if(!Number.isInteger(n.lane)||n.lane<0||n.lane>7||!Number.isFinite(n.beat)||n.beat<0||!Number.isFinite(n.length)||n.length<0)throw new Error("Chart contains an invalid note");return{id:crypto.randomUUID(),lane:n.lane,beat:n.beat,length:n.length};});
+      const importedControls=data.controls.map(c=>{if(!["bpm","speed"].includes(c.type)||!Number.isFinite(c.beat)||c.beat<0||!Number.isFinite(c.value)||c.value<=0)throw new Error("Chart contains an invalid control change");return{id:crypto.randomUUID(),type:c.type,beat:c.beat,value:c.value};});
+      if(data.events!==undefined&&!Array.isArray(data.events))throw new Error("Chart contains invalid events");
+      const importedEvents=(data.events||[]).map(event=>{
+        if(!event||event.type!=="change-character"||!["player","opponent"].includes(event.side)||!Number.isFinite(event.beat)||event.beat<0||(event.character!==null&&(typeof event.character!=="string"||!event.character)))throw new Error("Chart contains an invalid event");
+        return{id:crypto.randomUUID(),type:event.type,beat:event.beat,side:event.side,character:event.character};
+      });
+      return{bpm:Number(data.bpm)>0?data.bpm:120,speed:Number(data.scrollSpeed)>0?data.scrollSpeed:1,notes:importedNotes,controls:importedControls,events:importedEvents};
+    }
+    function importKadeChart(data){
+      const song=data.song;
+      if(!song||!Array.isArray(song.notes)||!Number.isFinite(song.bpm)||song.bpm<=0)throw new Error("Not a supported Kade Engine chart file");
+      const tempoChanges=[];let sectionBeat=0,previousBpm=song.bpm;
+      for(const section of song.notes){
+        if(!section||!Array.isArray(section.sectionNotes))throw new Error("Chart contains an invalid section");
+        const sectionLength=section.lengthInSteps===undefined?16:section.lengthInSteps;
+        if(!Number.isFinite(sectionLength)||sectionLength<=0)throw new Error("Chart contains an invalid section length");
+        if(section.changeBPM===true){
+          if(!Number.isFinite(section.bpm)||section.bpm<=0)throw new Error("A BPM-changing section is missing a valid BPM");
+          if(section.bpm!==previousBpm)tempoChanges.push({beat:sectionBeat,bpm:section.bpm});
+          previousBpm=section.bpm;
+        }
+        sectionBeat+=sectionLength/4;
+      }
+      const beatAtMilliseconds=milliseconds=>{
+        let bpm=song.bpm,lastBeat=0,lastTime=0;
+        for(const change of tempoChanges){
+          const changeTime=lastTime+(change.beat-lastBeat)*60000/bpm;
+          if(milliseconds<changeTime)break;
+          lastTime=changeTime;lastBeat=change.beat;bpm=change.bpm;
+        }
+        return lastBeat+(milliseconds-lastTime)*bpm/60000;
+      };
+      const importedNotes=[];
+      for(const section of song.notes){
+        for(const entry of section.sectionNotes){
+          if(!Array.isArray(entry)||entry.length<3||!Number.isFinite(entry[0])||entry[0]<0||!Number.isInteger(entry[1])||entry[1]<0||!Number.isFinite(entry[2])||entry[2]<0)throw new Error("Chart contains an invalid note");
+          const [milliseconds,noteData,sustainMilliseconds]=entry;
+          const isPlayer=Boolean(section.mustHitSection)!==(noteData>3);
+          const startBeat=beatAtMilliseconds(milliseconds),endBeat=beatAtMilliseconds(milliseconds+sustainMilliseconds);
+          importedNotes.push({id:crypto.randomUUID(),lane:(isPlayer?4:0)+(noteData%4),beat:startBeat,length:Math.max(0,endBeat-startBeat)});
+        }
+      }
+      importedNotes.sort((a,b)=>a.beat-b.beat||a.lane-b.lane);
+      return{bpm:song.bpm,speed:Number(song.speed)>0?song.speed:1,notes:importedNotes,controls:tempoChanges.map(change=>({id:crypto.randomUUID(),type:"bpm",beat:change.beat,value:change.bpm})),events:[]};
+    }
+    $("chartInput").onchange=async e=>{
+      const file=e.target.files[0];if(!file)return;
+      try{
+        const data=JSON.parse(await file.text());
+        const imported=data.format==="mini-fnf-chart"?importMiniChart(data):importKadeChart(data);
+        if(game.active||game.restartAt)stopPlaytest();else if(playing)pausePlayback();
+        remember();notes=imported.notes;controls=imported.controls;events=imported.events;updatePlaytestTotals();game.health=game.totalNotes?50:100;game.score=0;game.combo=0;game.hits=0;game.misses=0;game.accuracyPoints=0;game.held.clear();game.judged.clear();game.opponentJudged.clear();game.sustainHolds.clear();game.result="Ready";game.resultIsMiss=false;$("bpmInput").value=imported.bpm;$("speedInput").value=imported.speed;selected.clear();playhead=0;viewStart=0;renderControls();renderEvents();resetCharacterEvents();draw();setStatus(`${file.name} imported · ${notes.length} notes, ${controls.length} control changes, ${events.length} events`);
+      }catch(error){setStatus(`Chart import failed: ${error.message}`);}
+      finally{e.target.value="";}
+    };
+    function resizeWaves(){for(const t of trackDefs)drawWave(t.id);}
+    window.addEventListener("resize",()=>{setCanvasSize();resizeWaves();resizePlaytestCanvas();resizeCharacterCanvas(characterCanvas,characterCtx,playerCharacterMotion,"player");resizeCharacterCanvas(opponentCanvas,opponentCtx,opponentCharacterMotion,"opponent");});renderAudioRows();renderControls();renderEvents();updateHistoryButtons();setCanvasSize();resizePlaytestCanvas();resizeCharacterCanvas(characterCanvas,characterCtx,playerCharacterMotion,"player");resizeCharacterCanvas(opponentCanvas,opponentCtx,opponentCharacterMotion,"opponent");void loadCharacterAtlas();
+  })();
+  </script>
+</body>
+</html>
